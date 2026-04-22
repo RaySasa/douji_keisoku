@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.10)  23 APR 2026 02:04
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.10)  23 APR 2026 02:12
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/Users/sasaray/Desktop/TeX/Physics_Laboratory/douji_sokutei/test/test.tex
@@ -39,13 +39,13 @@ Inserting `tracingstacklevels' in `input_level_string'. (/usr/local/texlive/2025
 Document Class: ltjsarticle 2025-05-26 ltjsclasses 
 (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/luatexja.sty
 Package: luatexja 2026-01-07 Japanese Typesetting with Lua(La)TeX
-(/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/luatexja-core.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/luatexja-core.sty
 Package: luatexja-core 2023-10-07 Core of LuaTeX-ja
-(/usr/local/texlive/2025basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexbase/luatexbase.sty
 Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
-(/usr/local/texlive/2025basic/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
 Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 \@catcodetablestackcnt=\count273
 )
@@ -55,7 +55,7 @@ Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
-(/usr/local/texlive/2025basic/texmf-dist/tex/generic/iftex/iftex.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -64,11 +64,11 @@ Package pdftexcmds Info: \pdfdraftmode found.
 \pdftexcmds@toks=\toks17
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
-(/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+ (/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks18
 \XKV@tempa@toks=\toks19
 \XKV@tempb@toks=\toks20
-(/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/keyval.tex))
+ (/usr/local/texlive/2025basic/texmf-dist/tex/generic/xkeyval/keyval.tex))
 \XKV@depth=\count274
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty
@@ -243,7 +243,7 @@ Package: ltj-latex 2025-06-08 LaTeX support of LuaTeX-ja
 Inserting `ltj.direction' in `pre_shipout_filter'. (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty
 Package: lltjfont 2025-10-26 Patch to NFSS2 for LuaTeX-ja
 \ltj@@latex@plv=\count282
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/tuenc.def
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/tuenc.def
 File: tuenc.def 2025/07/18 v2.1d Standard LaTeX file
 \@remove@tlig@@@=\luafunction60
 LaTeX Font Info:    Redeclaring font encoding TU on input line 105.
@@ -440,6 +440,7 @@ Package: lltjdefs 2024-05-16 Default font settings of LuaTeX-ja
 luaotfload | db : Font names database loaded from /Users/sasaray/Library/texlive/2025basic/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz(load cache: extra_lmroman10-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
 (Font)              scaled to size 9.24713pt on input line 69.
+
 (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
 (Font)              scaled to size 9.24713pt on input line 69.
@@ -450,9 +451,9 @@ LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
 (Font)                  JY3/mc/m/n --> JY3/gt/m/n on input line 78.
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty
 Package: lltjcore 2025-06-12 Patch to LaTeX2e Kernel for LuaTeX-ja (for LaTeX2e >=2025-06-01)
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3kernel/expl3.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2025-12-29 L3 programming layer (loader) 
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count283
 Inserting `l3color' in `luaotfload.parse_color'.))
@@ -480,7 +481,7 @@ Package: lltjp-atbegshi 2024-05-14 Patching \shipout hooks for LuaTeX-ja
 \l__platex_shipout_dummy_box=\box69
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty
 Package: lltjp-geometry 2024-05-16 Patch to geometry for LuaTeX-ja with vertical writing mode
-(/usr/local/texlive/2025basic/texmf-dist/tex/generic/iftex/ifluatex.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )))
 \ltj@temp@cctb=\catcodetable16
@@ -517,7 +518,7 @@ LaTeX Info: Redefining \gt on input line 1214.
 \jsc@tocl@width=\dimen169
 \@lnumwidth=\dimen170
 \bibindent=\dimen171
-(/usr/local/texlive/2025basic/texmf-dist/tex/platex/jsclasses/jslogo.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/platex/jsclasses/jslogo.sty
 Package: jslogo 2019/07/25 okumura, texjporg
 LaTeX Info: Redefining \TeX on input line 82.
 LaTeX Info: Redefining \LaTeX on input line 135.
@@ -526,7 +527,7 @@ LaTeX Info: Redefining \LaTeXe on input line 188.
 \heisei=\count294
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec.sty
 Package: luatexja-fontspec 2025-09-30 fontspec support of LuaTeX-ja
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/fontspec/fontspec.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2025-10-09 L3 Experimental document command parser
@@ -548,7 +549,7 @@ Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
 \l__fontspec_tmpa_dim=\dimen172
 \l__fontspec_tmpb_dim=\dimen173
 \l__fontspec_tmpc_dim=\dimen174
-(/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/fontenc.sty
+ (/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 ) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/fontspec/fontspec.cfg)(load cache: extra_lmroman10-bold.luc)
 LaTeX Font Info:    Font shape `JT3/mc/b/n' in size <10> not available
@@ -643,9 +644,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 6.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 6.
-[1
-
-{/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./test.aux)
+ (./test.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-29>
@@ -653,19 +652,18 @@ L3 programming layer <2025-12-29>
 )
 
 Here is how much of LuaTeX's memory you used:
- 5413 strings out of 476081
+ 5410 strings out of 476081
  125244,662416 words of node,token memory allocated
- 792 words of node memory still in use:
-   7 hlist, 1 vlist, 4 rule, 2 glue, 3 kern, 1 glyph, 129 attribute, 49 glue_spec, 20 attribute_list, 1 write, 9 user_defined nodes
-   avail lists: 1:5,2:619,3:6,4:26,5:22,6:2,7:56,8:1,9:38,10:1
- 27762 multiletter control sequences out of 65536+600000
+ 819 words of node memory still in use:
+   7 hlist, 1 vlist, 4 rule, 2 glue, 3 kern, 1 glyph, 140 attribute, 49 glue_spec, 21 attribute_list, 2 write, 9 user_defined nodes
+   avail lists: 1:3,2:95,3:1,4:3,5:4,7:3,9:6,10:1
+ 27760 multiletter control sequences out of 65536+600000
  21 fonts using 12463479 bytes
- 119i,5n,112p,2114b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025basic/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></usr/local/texlive/2025basic/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf>
-Output written on test.pdf (1 page, 5402 bytes).
+ 119i,1n,112p,2114b,152s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-PDF statistics: 22 PDF objects out of 1000 (max. 8388607)
- 12 compressed objects within 1 object stream
+warning  (pdf backend): no pages of output.
+
+PDF statistics: 0 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 

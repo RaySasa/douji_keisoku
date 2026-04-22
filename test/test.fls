@@ -139,6 +139,4 @@ INPUT /usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/patches/lltjp-
 INPUT /usr/local/texlive/2025basic/texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-29e.sty
 INPUT ./test.aux
 OUTPUT test.aux
-OUTPUT test.pdf
-INPUT /usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT ./test.aux
