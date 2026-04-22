@@ -36,7 +36,7 @@
   ],
 
   "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
-  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.autoBuild.run": "onSave",
 
   "latex-workshop.linting.chktex.enabled": false,
   "latex-workshop.message.error.show": true,
