@@ -1,11 +1,21 @@
 {
+  "workbench.colorTheme": "Visual Studio Light",
+  "editor.minimap.enabled": false,
+  "workbench.editor.enablePreview": false,
+
+  "terminal.integrated.env.osx": {
+    "PATH": "/Library/TeX/texbin:${PATH}"
+  },
+
   "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
 
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk-lualatex",
       "command": "/Library/TeX/texbin/latexmk",
       "args": [
+        "-f",
         "-lualatex",
         "-synctex=1",
         "-interaction=nonstopmode",
@@ -24,7 +34,12 @@
     }
   ],
 
-  "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
   "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.view.pdf.refresh": "afterBuild"
+  "latex-workshop.view.pdf.split": "right",
+  "latex-workshop.view.pdf.refresh": "afterBuild",
+
+  "latex-workshop.linting.chktex.enabled": false,
+
+  "git.autofetch": true,
+  "git.enableSmartCommit": true
 }
