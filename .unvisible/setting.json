@@ -1,6 +1,5 @@
 {
   "latex-workshop.latex.autoBuild.run": "onSave",
-  "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
 
   "latex-workshop.latex.tools": [
     {
@@ -23,5 +22,9 @@
         "latexmk-lualatex"
       ]
     }
-  ]
+  ],
+
+  "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.refresh": "afterBuild"
 }
