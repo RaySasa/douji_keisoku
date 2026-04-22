@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1776877196.50634 "/Users/sasaray/Desktop/TeX/Physics_Laboratory/douji_sokutei/test/test.tex" "test.pdf" "test" 1776877197.41091 0
-  "/Users/sasaray/Desktop/TeX/Physics_Laboratory/douji_sokutei/test/test.tex" 1776877192.68547 159 2104236c882dc1d75245cc79b888affe ""
+["lualatex"] 1776877306.0108 "/Users/sasaray/Desktop/TeX/Physics_Laboratory/douji_sokutei/test/test.tex" "test.pdf" "test" 1776877306.87138 0
+  "/Users/sasaray/Desktop/TeX/Physics_Laboratory/douji_sokutei/test/test.tex" 1776877301.92463 162 77fe248a80dbc5992c5bb0d56a25f138 ""
   "/Users/sasaray/Library/texlive/2025basic/texmf-var/luatex-cache/generic/fonts/otl/haranoajigothic-medium.luc" 1773414828.57466 1943017 329197492431c641162846c8747e0667 ""
   "/Users/sasaray/Library/texlive/2025basic/texmf-var/luatex-cache/generic/fonts/otl/haranoajimincho-regular.luc" 1773414826.95762 2011338 80090f5ddaa3efff7a664a17ffd4f516 ""
   "/Users/sasaray/Library/texlive/2025basic/texmf-var/luatex-cache/generic/fonts/otl/lmmono9-regular.luc" 1773414827.09807 81880 1832426c0b4c0ac2391904d72a57c17d ""
@@ -135,8 +135,8 @@
   "/usr/local/texlive/2025basic/texmf-dist/tex/platex/jsclasses/jslogo.sty" 1601931076 5585 8e4615c54073c390d14154b29cee89cb ""
   "/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1767984577 456464 91a3069bb74f9cec2ab4c80a1e58d606 ""
   "/usr/local/texlive/2025basic/texmf-var/web2c/luahbtex/lualatex.fmt" 1767984606 5655034 58f430b7280c58df1451ceacf066a7de ""
-  "test.aux" 1776877197.28727 32 3985256e7290058c681f74d7a3565a19 "lualatex"
-  "test.tex" 1776877192.68547 159 2104236c882dc1d75245cc79b888affe ""
+  "test.aux" 1776877306.77642 32 3985256e7290058c681f74d7a3565a19 "lualatex"
+  "test.tex" 1776877301.92463 162 77fe248a80dbc5992c5bb0d56a25f138 ""
   (generated)
   "test.aux"
   "test.log"
