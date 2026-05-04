@@ -11,3 +11,6 @@
 *.blg
 *.nav
 *.snm
+.venv/
+__pycache__/
+*.pyc
