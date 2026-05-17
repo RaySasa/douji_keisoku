@@ -3,6 +3,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#texフォントを使用
+plt.rcParams["text.usetex"] = True
+
 
 #データ
 x = np.array([336, 138, 35, 308, 350])#チャンネル
