@@ -37,10 +37,10 @@ fit_label = (
     rf"$y = ({a:.2f} \pm {da:.2f})x + ({b:.0f} \pm {db:.0f})$"
 )
 
+#点をプロット
 plt.scatter(x, y, label="data", marker='o', s=20)
 
 # 各点にラベル
-
 for i in range(len(x)):
     if i == 2:
         plt.annotate(
@@ -59,12 +59,15 @@ for i in range(len(x)):
             fontsize=12
         )
 
+#直線
 plt.plot(x, y_fit, label=fit_label, linewidth = 1.0)
 
+#ラベル
 plt.xlabel("ch")
 plt.ylabel("keV")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 
+#画像を保存
 plt.savefig("tex/analysis_1.pdf", dpi=300, bbox_inches="tight")
 plt.show()
