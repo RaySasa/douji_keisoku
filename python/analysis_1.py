@@ -66,5 +66,5 @@ plt.ylabel("keV")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 
-plt.savefig("analysis_1.png", dpi=300)
+plt.savefig("tex/analysis_1.pdf", dpi=300, bbox_inches="tight")
 plt.show()
