@@ -64,15 +64,75 @@ db_c = np.sqrt(pcov[1,1])
 y_cfit = np.linspace(min(y_keV), max(y_keV), 300)
 R_cfit = f(y_cfit, a_c, b_c)
 
-
 #描画
 fig, ax = plt.subplots(1, 2, figsize = (12,5))
 
+#曲線のラベル
+fit_label_0 = (
+    rf"$y = ({a_c:.3f} \pm {da_c:.3f})/\sqrt{{x}} + ({b_c:.3f} \pm {db_c:.3f})$"
+)
+fit_label_1 = (
+    rf"$y = ({a_l:.3f} \pm {da_l:.3f})x + ({b_l:.3f} \pm {db_l:.3f})$"
+)
+
+
+
+
+# 各点にラベル
+for i in range(len(R)):
+    if i == 2:
+        ax[0].annotate(
+            labels[i],
+            (y_keV[i], R[i]),
+            textcoords="offset points",
+         xytext=(5,0),
+            fontsize=12
+        )
+    else:    
+        ax[0].annotate(
+            labels[i],
+            (y_keV[i], R[i]),
+            textcoords="offset points",
+         xytext=(-30,-10),
+            fontsize=12
+        )
+
+for i in range(len(R)):
+    if i == 3:
+        ax[1].annotate(
+            labels[i],
+            (Y[i], R[i]),
+            textcoords="offset points",
+        xytext=(5,-8),
+            fontsize=12
+        )
+    elif i == 2:
+        ax[1].annotate(
+            labels[i],
+            (Y[i], R[i]),
+            textcoords="offset points",
+         xytext=(-10,-20),
+            fontsize=12
+        )
+    else:
+        ax[1].annotate(
+            labels[i],
+            (Y[i], R[i]),
+            textcoords="offset points",
+         xytext=(5,-5),
+            fontsize=12
+        )
+               
+        
+
+
+
+#点と曲線
 ax[0].scatter(y_keV, R, label="data", marker='o', s=20)
-ax[0].plot(y_cfit, R_cfit, label="fit")
+ax[0].plot(y_cfit, R_cfit, label=fit_label_0, linewidth = 1.0)
 
 ax[1].scatter(Y, R, label="data", marker='o', s=20)
-ax[1].plot(Y, R_lfit)
+ax[1].plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
 
 #ラベル
 for i in range(0,2):
@@ -80,5 +140,5 @@ for i in range(0,2):
     ax[i].grid(linestyle = "--", linewidth = 0.5)
 
 #画像を保存
-plt.savefig("tex/analysis_1.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_2.pdf", dpi=300, bbox_inches="tight")
 plt.show()
