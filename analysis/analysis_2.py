@@ -75,9 +75,6 @@ fit_label_1 = (
     rf"$y = ({a_l:.3f} \pm {da_l:.3f})x + ({b_l:.3f} \pm {db_l:.3f})$"
 )
 
-
-
-
 # 各点にラベル
 for i in range(len(R)):
     if i == 2:
@@ -123,10 +120,6 @@ for i in range(len(R)):
             fontsize=12
         )
                
-        
-
-
-
 #点と曲線
 ax[0].scatter(y_keV, R, label="data", marker='o', s=20)
 ax[0].plot(y_cfit, R_cfit, label=fit_label_0, linewidth = 1.0)
@@ -135,9 +128,13 @@ ax[1].scatter(Y, R, label="data", marker='o', s=20)
 ax[1].plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
 
 #ラベル
+ax[0].set_xlabel(rf"$E\,\mathrm{{[keV]}}$")
+ax[1].set_xlabel(rf"$1/sqrt(E) [keV(-1/2)]$")
+
 for i in range(0,2):
     ax[i].legend()
     ax[i].grid(linestyle = "--", linewidth = 0.5)
+    ax[i].set_ylabel("Resolution")
 
 #画像を保存
 plt.savefig("tex/analysis_2.pdf", dpi=300, bbox_inches="tight")
