@@ -53,23 +53,23 @@ R_lfit = a_l * Y + b_l
 def f(x, a, b):
     return a /(np.sqrt(x)) + b
 #フィット
-popt, pcov = curve_fit(f, y_keV, R)
+#popt, pcov = curve_fit(f, y_keV, R)
 #係数
-a_c = popt[0]
-b_c = popt[1]
+#a_c = popt[0]
+#b_c = popt[1]
 #誤差
-da_c = np.sqrt(pcov[0,0])
-db_c = np.sqrt(pcov[1,1])
+#da_c = np.sqrt(pcov[0,0])
+#db_c = np.sqrt(pcov[1,1])
 #曲線
 y_cfit = np.linspace(min(y_keV), max(y_keV), 300)
-R_cfit = f(y_cfit, a_c, b_c)
+R_cfit = f(y_cfit, a_l, b_l)
 
 #描画
 fig, ax = plt.subplots(1, 2, figsize = (12,5))
 
 #曲線のラベル
 fit_label_0 = (
-    rf"$y = ({a_c:.3f} \pm {da_c:.3f})/\sqrt{{x}} + ({b_c:.3f} \pm {db_c:.3f})$"
+    rf"$y = ({a_l:.3f} \pm {da_l:.3f})/\sqrt{{x}} + ({b_l:.3f} \pm {db_l:.3f})$"
 )
 fit_label_1 = (
     rf"$y = ({a_l:.3f} \pm {da_l:.3f})x + ({b_l:.3f} \pm {db_l:.3f})$"
