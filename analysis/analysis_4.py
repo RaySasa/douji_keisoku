@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 
 T = 300
 x = np.array([0, 10, 20, 25, 30, 35, 45, 60, 75])
-y = np.array([11.281, 8.089, 4.967, 1.521, 1.410, 0.678, 0.408, 0.520, 0.408])
+y = np.array([11.281, 10.708, 4.967, 1.521, 1.410, 0.678, 0.408, 0.520, 0.408])
 yer = np.array([])
 for i in range(len(y)):
     if i == 2:
