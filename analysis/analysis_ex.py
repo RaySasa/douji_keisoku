@@ -35,10 +35,9 @@ for i in range(len(thr)):
         S[i] = S[i] + np.pi * a[i] * b[i]
     else:
         S[i] = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
-F = S * np.cos(thr) / (2 * np.pi * b**2)
+F = S * np.cos(thr) / (np.pi * b**2)
 
-
-#print(np.pi*a*b)    
+    
 plt.plot(th, F)
-plt.savefig("tex/analysis_ex.png", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_ex.pdf", dpi=300, bbox_inches="tight")
 plt.show()
