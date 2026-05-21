@@ -152,28 +152,28 @@ def calc_distribution(theta_deg, c, d, r):
     return np.array(result)
 
 
-#def fit_func(theta_deg, A, B, c, d, r):
-#    theory = calc_distribution(theta_deg, c, d, r)
-#    return A * theory + B
-
-def fit_func(theta_deg, A, B, c):
-    theory = calc_distribution(theta_deg, c, d=0.2, r=0.5)
+def fit_func(theta_deg, A, B, c, d, r):
+    theory = calc_distribution(theta_deg, c, d, r)
     return A * theory + B
 
+#def fit_func(theta_deg, A, B, c):
+#    theory = calc_distribution(theta_deg, c, d=0.2, r=0.5)
+#    return A * theory + B
 
-#p0 = [1.0, 0.0, 6.3, 0.2, 0.5]
 
-#bounds = (
-#    [0, -np.inf, 0.0, 0.01, 0.01],
-#   [np.inf, np.inf, 20.0, 2.0, 2.0]
-#)
-
-p0 = [1.0, 0.0, 2.0]
+p0 = [1.0, 0.0, 2.0, 0.2, 0.5]
 
 bounds = (
-    [0, -np.inf, 0.0],
-    [np.inf, np.inf, 20.0]
+    [0, -np.inf, 0.0, 0.01, 0.01],
+   [np.inf, np.inf, 10.0, 2.0, 2.0]
 )
+
+#p0 = [1.0, 0.0, 2.0]
+
+#bounds = (
+#    [0, -np.inf, 0.0],
+#    [np.inf, np.inf, 20.0]
+#)
 
 popt, pcov = curve_fit(
     fit_func,
@@ -184,16 +184,16 @@ popt, pcov = curve_fit(
     maxfev=20000
 )
 
-#A_fit, B_fit, c_fit, d_fit, r_fit = popt
-A_fit, B_fit, c_fit = popt
+A_fit, B_fit, c_fit, d_fit, r_fit = popt
+#A_fit, B_fit, c_fit = popt
 perr = np.sqrt(np.diag(pcov))
 
 print("===== fitting result =====")
 print("A =", A_fit, "+/-", perr[0])
 print("B =", B_fit, "+/-", perr[1])
 print("c =", c_fit, "+/-", perr[2])
-#print("d =", d_fit, "+/-", perr[3])
-#print("r =", r_fit, "+/-", perr[4])
+print("d =", d_fit, "+/-", perr[3])
+print("r =", r_fit, "+/-", perr[4])
 
 theta_plot = np.linspace(0, 75, 300)
 fit_y = fit_func(theta_plot, *popt)
