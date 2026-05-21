@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 def Om(l,Rs):
     return 2 * np.pi * (1 - l / np.sqrt(Rs**2 + l**2))
 
-th = np.linspace(0, 75, 100000)
+th = np.linspace(0,  80, 100000)
 thr = np.radians(th)
 
 l = 5
@@ -29,15 +29,21 @@ def Fe(i, x):
 S = np.zeros(len(thr))
 
 for i in range(len(thr)):
-    if xT[i] >= Rb +a[i]:
-        S[i] = S[i]
-    elif xT[i] <= Rb - a[i]:
+#    if xT[i] >= Rb +a[i]:
+#        S[i] = 0
+    if xT[i] <= Rb - a[i]:
         S[i] = S[i] + np.pi * a[i] * b[i]
-    else:
+    elif xT[i] <= Rb +a[i] and xT[i] >= Rb - a[i]:
         S[i] = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
+    #else:
+        #S[i] = np.pi * b[i]**2 / np.cos(thr[i])
 F = S * np.cos(thr) / (np.pi * b**2)
 
-    
-plt.plot(th, F)
+#plt.plot(th, F)
+#plt.plot([0,80],[0,0])    
+plt.plot(th, np.full([len(th), 1], Rb) , label= "R")
+plt.plot(th, xT + a, label= "x+a")
+plt.plot(th, xT - a, label= "x-a")
+plt.legend()
 plt.savefig("tex/analysis_ex.pdf", dpi=300, bbox_inches="tight")
 plt.show()
