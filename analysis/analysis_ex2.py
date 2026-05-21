@@ -80,11 +80,6 @@ for th in thr:
 
 result = np.array(result)
 
-#実験値
-xex = np.array([0, 10, 20, 25, 30, 35, 45, 60, 75])
-yex = np.array([11.281, 10.708, 4.967, 1.521, 1.410, 0.678, 0.408, 0.520, 0.408])
-
-plt.scatter(xex, yex)
 plt.plot(the, result)
-plt.savefig("tex/analysis_ex2.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_ex2.png", dpi=300, bbox_inches="tight")
 plt.show()
