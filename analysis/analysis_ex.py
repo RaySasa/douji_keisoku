@@ -29,15 +29,18 @@ def Fe(i, x):
 S = np.zeros(len(thr))
 
 for i in range(len(thr)):
-#    if xT[i] >= Rb +a[i]:
-#        S[i] = 0
+    if xT[i] >= Rb +a[i]:
+        S[i] = 0
     if xT[i] <= Rb - a[i]:
-        S[i] = S[i] + np.pi * a[i] * b[i]
+        S[i] = np.pi * a[i] * b[i]
     elif xT[i] <= Rb +a[i] and xT[i] >= Rb - a[i]:
         S[i] = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
     #else:
         #S[i] = np.pi * b[i]**2 / np.cos(thr[i])
 F = S * np.cos(thr) / (np.pi * b**2)
+M = np.zeros(len(thr))
+for i in range(len(thr)):
+    M = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
 
 #plt.plot(th, F)
 #plt.plot([0,80],[0,0])    
