@@ -31,7 +31,7 @@ S = np.zeros(len(thr))
 for i in range(len(thr)):
     if xT[i] >= Rb +a[i]:
         S[i] = 0
-    if xT[i] <= Rb - a[i]:
+    elif xT[i] <= Rb - a[i]:
         S[i] = np.pi * a[i] * b[i]
     elif xT[i] <= Rb +a[i] and xT[i] >= Rb - a[i]:
         S[i] = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
