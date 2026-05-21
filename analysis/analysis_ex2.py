@@ -6,15 +6,15 @@ from scipy.optimize import curve_fit
 from scipy.special import *
 
 M = 100
-the = np.linspace(0, 89, 300)
+the = np.linspace(0, 75, 300)
 thr = np.radians(the)
 
 L = 5
 Rs = 1.27
 Rb = 2.54
-c = 4
-d = 0.1
-r = 0.6
+c = 6
+d = 0.2
+r = 0.8
 
 x_arr = np.linspace(-d/2, d/2, M)
 rho_arr = np.linspace(0, r, M)
@@ -45,27 +45,18 @@ for th in thr:
     Om = Omega(l, h, Rs)
 
     xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
-    b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (2 * np.pi)) / (x + L * np.cos(th))
-    a = (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
     cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
-
-    inside_x0 = (b * x)**2 - (b**2 - a**2) * (Rb**2 - b**2)
-
-    valid_x0 = inside_x0 >= 0
-
-    x0 = np.full_like(x, np.nan)
-
-    x0[valid_x0] = ( b[valid_x0]**2 * xT[valid_x0] - a[valid_x0] * np.sqrt(inside_x0[valid_x0]) ) / (b[valid_x0]**2 - a[valid_x0]**2)
-
-#    x0 = (b**2 * xT - a * np.sqrt((b * x)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
-
+    b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (2 * np.pi)) / (x + L * np.cos(th))
+    a = b / cpsi #(x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
+    x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
+    
 
     #被積分関数
     n = np.zeros_like(x)
     
     mask1 = xT >= Rb + a
     mask2 = xT <= Rb - a
-    mask3 = (~mask1) & (~mask2) & valid_x0
+    mask3 = (~mask1) & (~mask2)
 
     n[mask1] = 0
     n[mask2] = Om[mask2]
@@ -90,7 +81,10 @@ for th in thr:
     #print(np.sum(mask3), np.sum(mask3 & (inside_x0 < 0)))
     #print(np.nanmin(inside_x0))
 
+    #print(np.nanmin(a - b))
+
 result = np.array(result)
 
 plt.plot(the, result)
+plt.savefig("tex/analysis_ex2.pdf", dpi=300, bbox_inches="tight")
 plt.show()

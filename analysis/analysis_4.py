@@ -17,4 +17,5 @@ for i in range(len(y)):
         yer = np.append(yer, np.sqrt(y[i] * T) / T)
 
 plt.scatter(x, y, label="data", marker='o', s=20)
+plt.savefig("tex/analysis_4.pdf", dpi=300, bbox_inches="tight")
 plt.show()
