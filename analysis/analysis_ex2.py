@@ -6,13 +6,13 @@ from scipy.optimize import curve_fit
 from scipy.special import *
 
 M = 100
-the = np.linspace(0, 75, 300)
+the = np.linspace(0, 89, 300)
 thr = np.radians(the)
 
 L = 5
 Rs = 1.27
 Rb = 2.54
-c = 3
+c = 4
 d = 0.1
 r = 0.6
 
@@ -47,7 +47,7 @@ for th in thr:
     xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
     b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (2 * np.pi)) / (x + L * np.cos(th))
     a = (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
-    cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
+    cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
 
     inside_x0 = (b * x)**2 - (b**2 - a**2) * (Rb**2 - b**2)
 
@@ -65,7 +65,7 @@ for th in thr:
     
     mask1 = xT >= Rb + a
     mask2 = xT <= Rb - a
-    mask3 = (~mask1) & (~mask2)
+    mask3 = (~mask1) & (~mask2) & valid_x0
 
     n[mask1] = 0
     n[mask2] = Om[mask2]
