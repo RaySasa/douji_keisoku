@@ -12,9 +12,9 @@ thr = np.radians(the)
 L = 5
 Rs = 1.27
 Rb = 2.54
-c = 6
+c = 6.3
 d = 0.2
-r = 0.8
+r = 0.5
 
 x_arr = np.linspace(-d/2, d/2, M)
 rho_arr = np.linspace(0, r, M)
@@ -78,13 +78,13 @@ for th in thr:
 
     result.append(I)
 
-    #print(np.sum(mask3), np.sum(mask3 & (inside_x0 < 0)))
-    #print(np.nanmin(inside_x0))
-
-    #print(np.nanmin(a - b))
-
 result = np.array(result)
 
+#実験値
+xex = np.array([0, 10, 20, 25, 30, 35, 45, 60, 75])
+yex = np.array([11.281, 10.708, 4.967, 1.521, 1.410, 0.678, 0.408, 0.520, 0.408])
+
+plt.scatter(xex, yex)
 plt.plot(the, result)
 plt.savefig("tex/analysis_ex2.pdf", dpi=300, bbox_inches="tight")
 plt.show()
