@@ -285,16 +285,39 @@
 \begin{align}
     \Omega(l, h, R)
     & = \int_{S} \frac{\bm{r} \cdot d\bm{S}}{r^3} \\
-    & = \int_{0}^{2\pi} d\phi \int_{0}^{2R} d\xi \cdot \frac{l\xi}{\left[ (\xi - h \cos\phi)^2 + h^2 + l^2 - h^2 \cos^2\phi \right]^{3/2}} \\
-    & = l \int_{0}^{2\pi} d\phi \left[ - \frac{1}{\left[(\xi - h\cos\phi)^2 h^2 + l^2 - h^2 \cos^2\phi \right]} \right]_{0}^{R} \\
+    & = \int_{0}^{2\pi} d\phi \int_{0}^{2R} d\xi \cdot \frac{l\xi}{\left[ (\xi - h \cos\phi)^2 + l^2 + h^2 \sin^2\phi \right]^{3/2}} \\
+    & = l \int_{0}^{2\pi} d\phi \cdot \left. - \frac{1}{\left[(\xi - h\cos\phi)^2 + l^2 + h^2 \sin^2\phi \right]} \right|_{\xi=0}^{\xi=R} \\
     & = \frac{2 \pi l}{\sqrt{l^2 + h^2}} - \frac{l}{l^2 + h^2 + R^2} \int_{0}^{2\pi} \frac{d\phi}{\sqrt{1 - \mu \cos\phi}}
 \end{align}
-ここで、$\mu \equiv \frac{2Rl}{h^2 + l^2 + R^2}$とした。三角関数の公式を用いると、
+ここで、$\mu \equiv 2Rl/(h^2 + l^2 + R^2)$とした。三角関数の公式を用いると、
+\begin{align}
+    1 - \mu\cos\phi & = \frac{l^2 + (h + R)^2}{l^2 + h^2 + R^2} \left( 1 - \eta^2 \cos^2 \frac{\phi}{2} \right) \\
+    \eta & \equiv 2 \sqrt{\frac{hR}{l^2 + (h + R)^2}}
+\end{align}
+である。よって、この積分は次のようになる。
+\begin{align}
+    \int_{0}^{2\pi} \frac{d\phi}{\sqrt{1 - \mu \cos\phi}}
+    & = \sqrt{\frac{l^2 + h^2 + R^2}{l^2 + (h + R)^2}} \int_{0}^{2\pi} \frac{d\phi}{\sqrt{1 - \eta^2 \cos^2 \frac{\phi}{2}}}
+\end{align}
+ここで、$\psi = (\pi - \phi) / 2$と置換すると、
 \begin{equation}
-    1 - \mu\cos\phi = \frac{l^2 + (h + R)^2}{l^2 + h^2 + R^2}
+    \int_{0}^{2\pi} \frac{d\phi}{\sqrt{1 - \eta^2 \cos^2 \frac{\phi}{2}}} = 4 \int_{0}^{\frac{\pi}{2}} \frac{d\psi}{\sqrt{1 - \eta^2 \sin^2 \psi}}
 \end{equation}
-
-
+となる。右辺の積分は第一種完全楕円積分であり、次の級数で表される。
+\begin{align}
+    K(\eta)
+    & \equiv \int_{0}^{\frac{\pi}{2}} \frac{dt}{\sqrt{1 - \eta^2 \sin^2 t}}\\
+    & = \frac{\pi}{2} \sum_{n=0}^{\infty} \left( \frac{(2n - 1)!!}{(2n)!!} \right)^2 \eta^{2n}
+\end{align}
+以上より、$\Omega(l, h, R)$は次の式で表される。
+\begin{equation}
+\left\{ \,
+    \begin{aligned}
+    & \Omega(l, h, R) = \frac{2 \pi l}{\sqrt{l^2 + h^2}} - \frac{4l}{\sqrt{l^2 + (h + R)^2}} K(\eta)\\
+    & \eta = 2 \sqrt{\frac{hR}{l^2 + (h + R)^2}}
+    \end{aligned}
+\right.
+\end{equation}
 
 
 \end{document}
