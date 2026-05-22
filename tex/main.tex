@@ -97,40 +97,54 @@
 \chapter{$\gamma$線の同時測定の角度分布の導出}
 \section{問題設定}
 本章では、実験1で行った$\gamma$線の同時測定の角度分布の導出を与える。\par
-\begin{tikzpicture}
-    \draw[->, thick, >=Latex]  (-7.5, 0) -- (7.5, 0);
-    \draw[->, thick, >=Latex]  (0, -5) -- (0, 5);
-    \draw[thick] (-0.25, 1) -- (0.25, 1);
-    \draw[thick] (-0.25, -1) -- (0.25, -1);
-    \draw[thick] (0.25, 1) -- (0.25, -1);
-    \draw[thick] (-0.25, -1) -- (-0.25, 1);
-    \draw[arrows = {-Stealth[]}]  (-0.3, -1.2) -- (0.3, -1.2);
-    \draw[arrows = {-Stealth[]}]  (0.3, -1.2) -- (-0.3, -1.2);
-    \draw[thick] (2, 2.5) -- (2, -2.5);
-    \draw[thick] (2, 2.5) -- (6, 2.5);
-    \draw[thick] (2, -2.5) -- (6, -2.5);
-    \draw[arrows = {-Stealth[]}]  (1.8, 0.1) -- (1.8, 2.5);
-    \draw[arrows = {-Stealth[]}]  (1.8, 2.5) -- (1.8, 0.1);
-    \draw[thick, dashed] (0, 0) -- ({-4 * cos(30)}, {-4 * sin(30)});
-    \draw[thick] (-1, 0) arc (180 : 210 : 1);
-    \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)});
-    \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({-(0.4/sin(30)) - 4*cos(30) - 2.5*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
-    \draw[thick] ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30)) - 2.5*cos(30)}, {-0.4 / (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
-    \draw[arrows = {-Stealth[]}] ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) }) -- ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)});
-    \draw[arrows = {-Stealth[]}] ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)}) -- ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) });
-    \draw[thick] (-3,3) circle (5pt);
-    \fill (-3,3) circle (2.5pt);
+計算のために、実験装置系に図\ref{a1}のような座標を設定する。ここで$z$軸は紙面手前側に垂直な方向に設定し、原点$\mathrm{O}$は線源の中心にとる。
+線源のケースを除いた本体の厚みを$d$、半径を$r$とする。線源の中心から検出器大までの距離を$c$、検出器大の半径を$R_b$、検出器小の半径を$R_s$とする。
+線源の中心から検出器小までの距離を$L$、原点から検出器小の検出面へおろした垂線と$x$軸の成す角を$\theta$とし。この$\theta$に対する同時検出計数の角度分布を求める。
 
-    \node[above] at (7.5, 0) {$x$};
-    \node[left] at (0, 5) {$y$};
-    \node at (0.2,-1.5) {$d$};
-    \node[below left] at (2, 0) {$c$}; 
-    \node[left] at (1.8, 1.25) {$R_b$};
-    \node[below left] at (-1, -0.05) {$\theta$};
-    \node at (-3.3,-1.2) {$R_s$};
-    \node[right] at (-2.8,3) {$z$};
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[->, thick, >=Latex]  (-7.5, 0) -- (7.5, 0);
+        \draw[->, thick, >=Latex]  (0, -5) -- (0, 5);
+        \draw[thick] (-0.25, 1) -- (0.25, 1);
+        \draw[thick] (-0.25, -1) -- (0.25, -1);
+        \draw[thick] (0.25, 1) -- (0.25, -1);
+        \draw[thick] (-0.25, -1) -- (-0.25, 1);
+        \draw[arrows = {-Stealth[]}]  (-0.3, -1.2) -- (0.3, -1.2);
+        \draw[arrows = {-Stealth[]}]  (0.3, -1.2) -- (-0.3, -1.2);
+        \draw[thick] (2, 2.5) -- (2, -2.5);
+        \draw[thick] (2, 2.5) -- (6, 2.5);
+        \draw[thick] (2, -2.5) -- (6, -2.5);
+        \draw[arrows = {-Stealth[]}]  (1.8, 0.1) -- (1.8, 2.5);
+        \draw[arrows = {-Stealth[]}]  (1.8, 2.5) -- (1.8, 0.1);
+        \draw[thick, dashed] (0, 0) -- ({-4 * cos(30)}, {-4 * sin(30)});
+        \draw[thick] (-1, 0) arc (180 : 210 : 1);
+        \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)});
+        \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({-(0.4/sin(30)) - 4*cos(30) - 2.5*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
+        \draw[thick] ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30)) - 2.5*cos(30)}, {-0.4 / (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
+        \draw[arrows = {-Stealth[]}] ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) }) -- ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)});
+        \draw[arrows = {-Stealth[]}] ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)}) -- ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) });
+        \draw[thick] (-3,3) circle (5pt);
+        \fill (-3,3) circle (2.5pt);
+        \draw[arrows = {-Stealth[]}] (0.4, 1) -- (0.4, 0.1);
+        \draw[arrows = {-Stealth[]}] (0.4, 0.1) -- (0.4, 1);
 
+        \node[above] at (7.5, 0) {$x$};
+        \node[left] at (0, 5) {$y$};
+        \node at (0.2,-1.5) {$d$};
+        \node[below left] at (2, 0) {$c$}; 
+        \node[left] at (1.8, 1.25) {$R_b$};
+        \node[below left] at (-1, -0.05) {$\theta$};
+        \node at (-3.3,-1.2) {$R_s$};
+        \node[right] at (-2.8,3) {$z$};
+        \node[right] at (0.4, 0.5) {$r$};
+        \node at (-1.5, -1.2) {$L$};
+    \end{tikzpicture}
+    \caption{実験装置の投影図}
+    \label{a1}
+\end{figure}
 
-\end{tikzpicture}
+\section{計算の方針}
+検出器が検出する放射線の計数は、放射線源が検出面にたいして見込む立体格に比例する。
 
 \end{document}
