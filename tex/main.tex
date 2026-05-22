@@ -165,8 +165,8 @@
 % --------------------
 % coordinates
 % --------------------
-\coordinate (O) at (0,-5.2);
-\coordinate (P) at (-0.42,0.30);
+\coordinate (O) at (0.45,-3);
+\coordinate (P) at (-0.62,0.30);
 
 % angles
 \def\rang{96}   % r の向き：少し左斜め
@@ -194,20 +194,19 @@
 % --------------------
 
 % 曲面手前まで（実線）
-\coordinate (A) at ($(O)!0.676!(P)$);
+\coordinate (A) at ($(O)!0.47!(P)$);
 \draw[thick] (O) -- (A);
 
-% 曲面内部（点線）
-\draw[thick,densely dotted, -{Latex[length=2mm]}] (A) -- (P);
+% 曲面内部（点線＋矢印）
+\draw[thick,densely dotted,-{Latex[length=2mm]}] (A) -- (P);
 
-% 曲面上側（点線）
-\draw[thick,densely dotted] (P) -- ++(\rang:2.35);
-
+% 曲面上側の延長（O--P と完全に同一直線）
+\draw[thick,densely dotted] (P) -- ($(P)!-0.45!(O)$);
 
 
 \node[below] at (O) {$\mathrm{O}$};
 
-\node at (1.05,-3.05) {$\bm r = r\cdot \hat{\bm r}$};
+\node at (1.05,-2.5) {$\bm r = r\cdot \hat{\bm r}$};
 
 % --------------------
 % small surface element
@@ -229,10 +228,10 @@
 % angle theta
 % --------------------
 \draw[thick]
-  ($(P)+(\rang:0.78)$)
-  arc[start angle=\rang ,end angle=\nang,radius=0.78];
+  ($(P)+(106:0.5)$)
+  arc[start angle=106,end angle=\nang,radius=0.5];
 
-\node at ($(P)+(86:0.95)+(0.02,0.02)$) {$\theta$};
+\node at ($(P)+(93:1.00)+(0.05,0.00)$) {$\theta$};
 
 \end{tikzpicture}
 \end{figure}
