@@ -106,19 +106,29 @@
     \draw[thick] (-0.25, -1) -- (-0.25, 1);
     \draw[arrows = {-Stealth[]}]  (-0.3, -1.2) -- (0.3, -1.2);
     \draw[arrows = {-Stealth[]}]  (0.3, -1.2) -- (-0.3, -1.2);
-    \draw[thick] (2, 2) -- (2, -2);
-    \draw[thick] (2, 2) -- (6, 2);
-    \draw[thick] (2, -2) -- (6, -2);
-    \draw[arrows = {-Stealth[]}]  (1.8, 0.1) -- (1.8, 2);
-    \draw[arrows = {-Stealth[]}]  (1.8, 2) -- (1.8, 0.1);
-
-
+    \draw[thick] (2, 2.5) -- (2, -2.5);
+    \draw[thick] (2, 2.5) -- (6, 2.5);
+    \draw[thick] (2, -2.5) -- (6, -2.5);
+    \draw[arrows = {-Stealth[]}]  (1.8, 0.1) -- (1.8, 2.5);
+    \draw[arrows = {-Stealth[]}]  (1.8, 2.5) -- (1.8, 0.1);
+    \draw[thick, dashed] (0, 0) -- ({-4 * cos(30)}, {-4 * sin(30)});
+    \draw[thick] (-1, 0) arc (180 : 210 : 1);
+    \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)});
+    \draw[thick] ({-(0.4/sin(30)) - 4*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30)}) -- ({-(0.4/sin(30)) - 4*cos(30) - 2.5*cos(30)}, {0.4/ (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
+    \draw[thick] ({(0.4 / sin(30) - 4 * cos(30))}, {-(0.4 / sin(30)) / tan(30) - 4 * sin(30)}) -- ({(0.4 / sin(30) - 4 * cos(30)) - 2.5*cos(30)}, {-0.4 / (sin(30) * tan(30)) - 4 * sin(30) - 2.5 * sin(30)});
+    \draw[arrows = {-Stealth[]}] ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) }) -- ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)});
+    \draw[arrows = {-Stealth[]}] ({(0.4 / sin(30) +0.175 - 4 * cos(30))}, {-(0.4 / sin(30) ) / tan(30) - 4 * sin(30) + 0.175/cos(30)}) -- ({-(0.4/sin(30)) + 0.175 - 4*cos(30)}, {(0.4/ sin(30)) / tan(30) - 4 * sin(30) + 0.175 /cos(30) });
+    \draw[thick] (-3,3) circle (5pt);
+    \fill (-3,3) circle (2.5pt);
 
     \node[above] at (7.5, 0) {$x$};
     \node[left] at (0, 5) {$y$};
     \node at (0.2,-1.5) {$d$};
     \node[below left] at (2, 0) {$c$}; 
-    \node[left] at (1.8, 1) {$R_b$};
+    \node[left] at (1.8, 1.25) {$R_b$};
+    \node[below left] at (-1, -0.05) {$\theta$};
+    \node at (-3.3,-1.2) {$R_s$};
+    \node[right] at (-2.8,3) {$z$};
 
 
 \end{tikzpicture}

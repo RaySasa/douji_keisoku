@@ -15,6 +15,7 @@ Rb = 2.54
 c = 5
 d = 0.3
 r = 0.4
+lam = 0.7 #減衰率
 
 x_arr = np.linspace(-d/2, d/2, M)
 rho_arr = np.linspace(0, r, M)
@@ -49,7 +50,6 @@ for th in thr:
     b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (2 * np.pi)) / (x + L * np.cos(th))
     a = b / cpsi #(x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
     x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
-    
 
     #被積分関数
     n = np.zeros_like(x)
@@ -60,7 +60,7 @@ for th in thr:
 
     n[mask1] = 0
     n[mask2] = Om[mask2]
-    n[mask3] = (Fc(Rb) - Fc(x0[mask3]) + Fe(x0[mask3], xT[mask3], a[mask3], b[mask3]) - Fe(xT[mask3] - a[mask3], xT[mask3], a[mask3], b[mask3])) * cpsi[mask3] * Om[mask3] / (np.pi * b[mask3]**2)
+    n[mask3] = (Fc(Rb) - Fc(x0[mask3]) + Fe(x0[mask3], xT[mask3], a[mask3], b[mask3]) - Fe(xT[mask3] - a[mask3], xT[mask3], a[mask3], b[mask3])) * cpsi[mask3] * Om[mask3] / (np.pi * b[mask3]**2) 
 
 
 
