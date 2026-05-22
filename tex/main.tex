@@ -157,83 +157,80 @@
 最後に、この計数を線源の体積全域にわたって積分することで、計数の角度分布が得られる。
 
 \section{立体角の導出}
-本節では、一般に点が円に対して見込む立体角を導出する。
+本節では、一般に点が円に対して見込む立体角を導出する。一般に曲面Sに対して立体角は次のように定義される。
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.8, >=stealth]
 
-\begin{figure}
-    \begin{tikzpicture}[scale=1.15, >=stealth]
+    % --------------------
+    % coordinates
+    % --------------------
+    \coordinate (O) at (0.45,-3);
+    \coordinate (P) at (-0.62,0.30);
 
-% --------------------
-% coordinates
-% --------------------
-\coordinate (O) at (0.45,-3);
-\coordinate (P) at (-0.62,0.30);
+    % angles
+    \def\rang{96}   % r の向き：少し左斜め
+    \def\nang{76}   % 法線方向
 
-% angles
-\def\rang{96}   % r の向き：少し左斜め
-\def\nang{76}   % 法線方向
+    % --------------------
+    % surface S
+    % --------------------
+    \draw[thick]
+      (-3.4,-0.75)
+      .. controls (-3.1,0.25) and (-2.35,1.15) .. (-1.45,1.20)
+      .. controls (-0.85,1.22) and (-0.55,0.80) .. (0.00,0.88)
+      .. controls (0.55,0.95) and (0.85,1.22) .. (1.55,1.08)
+      .. controls (2.20,0.95) and (2.45,0.55) .. (3.00,0.68)
+      .. controls (3.45,0.78) and (3.55,1.30) .. (4.10,1.05)
+      .. controls (4.95,0.65) and (4.70,-0.65) .. (3.80,-1.15)
+      .. controls (2.85,-1.70) and (1.30,-1.55) .. (0.20,-1.45)
+      .. controls (-0.95,-1.35) and (-1.65,-1.05) .. (-2.20,-1.35)
+      .. controls (-2.85,-1.70) and (-3.65,-1.45) .. (-3.4,-0.75);
 
-% --------------------
-% surface S
-% --------------------
-\draw[thick]
-  (-3.4,-0.75)
-  .. controls (-3.1,0.25) and (-2.35,1.15) .. (-1.45,1.20)
-  .. controls (-0.85,1.22) and (-0.55,0.80) .. (0.00,0.88)
-  .. controls (0.55,0.95) and (0.85,1.22) .. (1.55,1.08)
-  .. controls (2.20,0.95) and (2.45,0.55) .. (3.00,0.68)
-  .. controls (3.45,0.78) and (3.55,1.30) .. (4.10,1.05)
-  .. controls (4.95,0.65) and (4.70,-0.65) .. (3.80,-1.15)
-  .. controls (2.85,-1.70) and (1.30,-1.55) .. (0.20,-1.45)
-  .. controls (-0.95,-1.35) and (-1.65,-1.05) .. (-2.20,-1.35)
-  .. controls (-2.85,-1.70) and (-3.65,-1.45) .. (-3.4,-0.75);
+    \node at (1.95,-0.25) {$S$};
 
-\node at (1.95,-0.25) {$S$};
+    % --------------------
+    % r vector
+    % --------------------
 
-% --------------------
-% r vector
-% --------------------
+    % 曲面手前まで（実線）
+    \coordinate (A) at ($(O)!0.47!(P)$);
+    \draw[thick] (O) -- (A);
 
-% 曲面手前まで（実線）
-\coordinate (A) at ($(O)!0.47!(P)$);
-\draw[thick] (O) -- (A);
+    % 曲面内部（点線＋矢印）
+    \draw[thick,densely dotted,-{Latex[length=2mm]}] (A) -- (P);
 
-% 曲面内部（点線＋矢印）
-\draw[thick,densely dotted,-{Latex[length=2mm]}] (A) -- (P);
+    % 曲面上側の延長（O--P と完全に同一直線）
+    \draw[thick,densely dotted] (P) -- ($(P)!-0.45!(O)$);
+    \node[below] at (O) {$\mathrm{O}$};
+    \node at (1.05,-2.5) {$\bm r$};
 
-% 曲面上側の延長（O--P と完全に同一直線）
-\draw[thick,densely dotted] (P) -- ($(P)!-0.45!(O)$);
+    % --------------------
+    % small surface element
+    % slightly tilted
+    % --------------------
+    \begin{scope}[shift={(P)}, rotate=-14]
+      \draw[thick] (0,0) ellipse [x radius=0.60, y radius=0.22];
+    \end{scope}
 
-
-\node[below] at (O) {$\mathrm{O}$};
-
-\node at (1.05,-2.5) {$\bm r = r\cdot \hat{\bm r}$};
-
-% --------------------
-% small surface element
-% slightly tilted
-% --------------------
-\begin{scope}[shift={(P)}, rotate=-14]
-  \draw[thick] (0,0) ellipse [x radius=0.60, y radius=0.22];
-\end{scope}
-
-% --------------------
-% normal vector
-% --------------------
-\draw[thick,->] (P) -- ++(\nang:2.05);
-
-\node[right] at (0,1.52) {$d\bm S=\hat{\bm n}\,dS$};
+    % --------------------
+    % normal vector
+    % --------------------
+    \draw[thick,->] (P) -- ++(\nang:2.05);
+    \node[right] at (0,1.52) {$d\bm S$};
 
 
-% --------------------
-% angle theta
-% --------------------
-\draw[thick]
-  ($(P)+(106:0.5)$)
-  arc[start angle=106,end angle=\nang,radius=0.5];
+    % --------------------
+    % angle theta
+    % --------------------
+    \draw[thick]
+      ($(P)+(106:0.5)$)
+      arc[start angle=106,end angle=\nang,radius=0.5];
+    \node at ($(P)+(93:1.00)+(0.05,0.00)$) {$\theta$};
 
-\node at ($(P)+(93:1.00)+(0.05,0.00)$) {$\theta$};
-
-\end{tikzpicture}
+    \end{tikzpicture}
+    \caption{曲面$S$と微小面素ベクトル$d\bm{S}$}
+    \label{a2}
 \end{figure}
 
 
