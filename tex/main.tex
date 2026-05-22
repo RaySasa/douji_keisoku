@@ -98,7 +98,29 @@
 \section{問題設定}
 本章では、実験1で行った$\gamma$線の同時測定の角度分布の導出を与える。\par
 \begin{tikzpicture}
-    
+    \draw[->, thick, >=Latex]  (-7.5, 0) -- (7.5, 0);
+    \draw[->, thick, >=Latex]  (0, -5) -- (0, 5);
+    \draw[thick] (-0.25, 1) -- (0.25, 1);
+    \draw[thick] (-0.25, -1) -- (0.25, -1);
+    \draw[thick] (0.25, 1) -- (0.25, -1);
+    \draw[thick] (-0.25, -1) -- (-0.25, 1);
+    \draw[arrows = {-Stealth[]}]  (-0.3, -1.2) -- (0.3, -1.2);
+    \draw[arrows = {-Stealth[]}]  (0.3, -1.2) -- (-0.3, -1.2);
+    \draw[thick] (2, 2) -- (2, -2);
+    \draw[thick] (2, 2) -- (6, 2);
+    \draw[thick] (2, -2) -- (6, -2);
+    \draw[arrows = {-Stealth[]}]  (1.8, 0.1) -- (1.8, 2);
+    \draw[arrows = {-Stealth[]}]  (1.8, 2) -- (1.8, 0.1);
+
+
+
+    \node[above] at (7.5, 0) {$x$};
+    \node[left] at (0, 5) {$y$};
+    \node at (0.2,-1.5) {$d$};
+    \node[below left] at (2, 0) {$c$}; 
+    \node[left] at (1.8, 1) {$R_b$};
+
+
 \end{tikzpicture}
 
 \end{document}
