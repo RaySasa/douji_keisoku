@@ -240,8 +240,11 @@
     \Omega = \int_{S} \frac{\bm{r} \cdot d\bm{S}}{r^3}
     \label{defOm}
 \end{equation}
-これを用いて、必要な立体角の表式を求めていく。
-\begin{figure}[b]
+これを用いて、必要な立体角の表式を求めていく。図\ref{ImageOm}のような状況で、点Pが円$S$に見込む立体角を考える。点Oは円$S$の中心を透る$S$の法線上に存在する。
+線分OPの長さは$h$で、$\mathrm{OP}\parallel S$である。点Oと円$S$の距離を$l$, $S$の半径を$R$とする。軸の取り方は自由なので、円$S$の法線方向に$z$軸をとる。
+点Pはx軸上に存在することにして、$\mathrm{P}(h, 0, 0)$とする。円$S$上の点をパラメーター$(\xi ,\phi)$を用いて、$(\xi\cos\phi, \xi,\sin\phi, l)$と表す。
+(ただし、$0 \le \xi \le R , \ 0 \le \phi \le 2\pi$)
+\begin{figure}[H]
     \centering
     \tdplotsetmaincoords{75}{310}
     \begin{tikzpicture}[tdplot_main_coords]
@@ -257,25 +260,22 @@
         \fill (0, 0, 0) circle (2pt);
         \fill(0, -1, 0) circle (2pt);
         \fill(7, 0, 0) circle (2pt);
-        \fill(7, 1.2, 0.8) circle (2pt);
         \draw[thick] (0, 0) arc (130:95:7);
         \draw[thick] (7, 0) arc (0:90:1.7);
-    
-
 
         \node at (0, 0.5, 0) {O};
         \node[below] at (0, -1, 0) {P};
         \node at (5, 0.8, 0.8) {$\bm{r}$};
         \node at (4.5, 1.55, 0) {$l$};
-        \node at (7, -2.3, -0.3) {$C$};
+        \node at (7, -2.3, -0.3) {$S$};
         \node at (7, -1, -0.3) {$R$};
         \node at (0, -0.5, -0.2) {$h$};
-
-        
         
     \end{tikzpicture}
-    \caption{斜円錐}
+    \caption{点Pと見込む面$S$(円)}
+    \label{ImageOm}
 \end{figure}
+よって、点Pから見た円$S$上の点の位置ベクトル$\bm{r}$は、$\bm{r}=(\xi\cos\phi - h, \xi,\sin\phi, l)$となる。
 
 
 
