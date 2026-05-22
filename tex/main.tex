@@ -192,14 +192,18 @@
 % --------------------
 % r vector
 % --------------------
+
+% 曲面手前まで（実線）
 \coordinate (A) at ($(O)!0.676!(P)$);
-\draw[thick,->] (O) -- (A);
+\draw[thick] (O) -- (A);
 
-% 曲面に隠れる部分
-\draw[thick,densely dotted] (A) -- (P);
+% 曲面内部（点線）
+\draw[thick,densely dotted, -{Latex[length=2mm]}] (A) -- (P);
 
-% 曲面より上側の延長線
+% 曲面上側（点線）
 \draw[thick,densely dotted] (P) -- ++(\rang:2.35);
+
+
 
 \node[below] at (O) {$\mathrm{O}$};
 
@@ -209,8 +213,8 @@
 % small surface element
 % slightly tilted
 % --------------------
-\begin{scope}[shift={(P)}, rotate=8]
-  \draw[thick] (0,0) ellipse [x radius=0.58, y radius=0.20];
+\begin{scope}[shift={(P)}, rotate=-14]
+  \draw[thick] (0,0) ellipse [x radius=0.60, y radius=0.22];
 \end{scope}
 
 % --------------------
@@ -218,17 +222,17 @@
 % --------------------
 \draw[thick,->] (P) -- ++(\nang:2.05);
 
-\node[right] at (0.42,1.52) {$d\bm S=\hat{\bm n}\,dS$};
-\draw[thick] (0.08,1.35) -- (0.36,1.42);
+\node[right] at (0,1.52) {$d\bm S=\hat{\bm n}\,dS$};
+
 
 % --------------------
 % angle theta
 % --------------------
 \draw[thick]
-  ($(P)+(\rang:0.62)$)
-  arc[start angle=\rang,end angle=\nang,radius=0.62];
+  ($(P)+(\rang:0.78)$)
+  arc[start angle=\rang ,end angle=\nang,radius=0.78];
 
-\node at ($(P)+(86:0.95)+(-0.18,0.05)$) {$\theta$};
+\node at ($(P)+(86:0.95)+(0.02,0.02)$) {$\theta$};
 
 \end{tikzpicture}
 \end{figure}
