@@ -241,9 +241,14 @@
 これを用いて、必要な立体角の表式を求めていく。
 \begin{figure}
     \centering
-    \tdplotsetmaincoords{140}{30}
+    \tdplotsetmaincoords{110}{60}
     \begin{tikzpicture}[tdplot_main_coords]
-        \draw[->, thick, >=Latex] (0,0,0) -- (10, 0, 0);
+        \draw[->, thick, >=Latex] (-1,0,0) -- (10, 0, 0);
+        \draw[thick, canvas is yz plane at x=7] (2, 0) arc (0:360:2);
+        \fill (0, 0, 0) circle (2pt);
+
+        \node at (0, -0.5, 0) {O};
+        
         
     \end{tikzpicture}
     \caption{斜円錐}
