@@ -12,9 +12,9 @@ thr = np.radians(the)
 L = 5
 Rs = 1.27
 Rb = 2.54
-c = 7
-d = 0.16
-r = 0.13
+c = 5
+d = 0.3
+r = 0.4
 
 x_arr = np.linspace(-d/2, d/2, M)
 rho_arr = np.linspace(0, r, M)
