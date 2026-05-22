@@ -102,6 +102,7 @@
 線源のケースを除いた本体の厚みを$d$、半径を$r$とする。線源の中心から検出器大までの距離を$c$、検出器大の半径を$R_b$、検出器小の半径を$R_s$とする。
 線源の中心から検出器小までの距離を$L$、原点から検出器小の検出面へおろした垂線と$x$軸の成す角を$\theta$とし。この$\theta$に対する同時検出計数の角度分布を求める。
 
+%Tikz(A.1)
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -157,7 +158,7 @@
 最後に、この計数を線源の体積全域にわたって積分することで、計数の角度分布が得られる。
 
 \section{立体角の導出}
-本節では、一般に点が円に対して見込む立体角を導出する。一般に曲面Sに対して立体角は次のように定義される。
+本節では、一般に点が円に対して見込む立体角を導出する。
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=0.8, >=stealth]
@@ -167,6 +168,7 @@
     % --------------------
     \coordinate (O) at (0.45,-3);
     \coordinate (P) at (-0.62,0.30);
+    \fill (0.45,-3) circle (1.5pt);
 
     % angles
     \def\rang{96}   % r の向き：少し左斜め
@@ -231,6 +233,17 @@
     \end{tikzpicture}
     \caption{曲面$S$と微小面素ベクトル$d\bm{S}$}
     \label{a2}
+\end{figure}
+一般に、点Oから面積Sの曲面Sを見込む立体角$\Omega$は次のように定義される。
+\begin{equation}
+    \Omega = \int_{S} \frac{\bm{r} \cdot d\bm{S}}{r^3}
+\end{equation}
+これを用いて、必要な立体角の表式を求めていく。
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        
+    \end{tikzpicture}
 \end{figure}
 
 
