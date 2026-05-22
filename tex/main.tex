@@ -276,6 +276,24 @@
     \label{ImageOm}
 \end{figure}
 よって、点Pから見た円$S$上の点の位置ベクトル$\bm{r}$は、$\bm{r}=(\xi\cos\phi - h, \xi,\sin\phi, l)$となる。
+先に以下の量を計算しておく。
+\begin{align}
+    r^3 & = \left[ (\xi - h \cos\phi)^2 + h^2 + l^2 - h^2 \cos^2\phi \right]^{3/2}\\
+    \bm{r} \cdot d\bm{S} & = \bm{r} \cdot \bm{e}_z (\xi d\xi d\phi) =  l \xi d\xi d\phi
+\end{align}
+以上より、点Pから見込む円$S$の立体角$\Omega(l, h, R)$は、
+\begin{align}
+    \Omega(l, h, R)
+    & = \int_{S} \frac{\bm{r} \cdot d\bm{S}}{r^3} \\
+    & = \int_{0}^{2\pi} d\phi \int_{0}^{2R} d\xi \cdot \frac{l\xi}{\left[ (\xi - h \cos\phi)^2 + h^2 + l^2 - h^2 \cos^2\phi \right]^{3/2}} \\
+    & = l \int_{0}^{2\pi} d\phi \left[ - \frac{1}{\left[(\xi - h\cos\phi)^2 h^2 + l^2 - h^2 \cos^2\phi \right]} \right]_{0}^{R} \\
+    & = \frac{2 \pi l}{\sqrt{l^2 + h^2}} - \frac{l}{l^2 + h^2 + R^2} \int_{0}^{2\pi} \frac{d\phi}{\sqrt{1 - \mu \cos\phi}}
+\end{align}
+ここで、$\mu \equiv \frac{2Rl}{h^2 + l^2 + R^2}$とした。三角関数の公式を用いると、
+\begin{equation}
+    1 - \mu\cos\phi = \frac{l^2 + (h + R)^2}{l^2 + h^2 + R^2}
+\end{equation}
+
 
 
 
