@@ -19,6 +19,7 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{subcaption}
+\usepackage{wrapfig}
 
 % =========================
 % TikZ
@@ -143,7 +144,7 @@
         \node at (-1.5, -1.2) {$L$};
     \end{tikzpicture}
     \caption{実験装置の投影図}
-    \label{a1}
+    \label{system1}
 \end{figure}
 
 \section{計算の方針}
@@ -153,13 +154,12 @@
 以上を踏まえて、次のような流れで計算を実行する。線源内の点Pの座標を$(x, \rho \sin\phi, \rho \cos\phi)$として、点Pから検出器小を見込む立体角を調べる。
 そのままでは計算が煩雑なので、先に一般の点が円を見込む立体角の式を求める。
 次に、検出器小に検出された$\gamma$線のうち検出器大にも検出された割合を調べる。点Pから見た検出器小の検出面を$180^{\circ}$反転させて、検出器大に投影する。
-投影された面のうち、検出器大に含まれる部分の面積を求めてもとの見かけの面積で割ることで、検出器大に検出された$gamma$線の割合が求められる。
+投影された面のうち、検出器大に含まれる部分の面積を求めてもとの見かけの面積で割ることで、検出器大に検出された$\gamma$線の割合が求められる。
 この割合に検出器小を見込む立体角と単位(微小)体積が放射する放射線数をかけることで、点Pから出て同次計測される計数が得られる。
 最後に、この計数を線源の体積全域にわたって積分することで、計数の角度分布が得られる。
 
 \section{立体角の導出}
-本節では、一般に点が円に対して見込む立体角を導出する。
-\begin{figure}[H]
+\begin{wrapfigure}{r}{0.4\textwidth}
     \centering
     \begin{tikzpicture}[scale=0.8, >=stealth]
 
@@ -200,7 +200,7 @@
     \draw[thick] (O) -- (A);
 
     % 曲面内部（点線＋矢印）
-    \draw[thick,densely dotted,-{Latex[length=2mm]}] (A) -- (P);
+    \draw[thick,densely dotted,-{Latex[length=1.7mm]}] (A) -- (P);
 
     % 曲面上側の延長（O--P と完全に同一直線）
     \draw[thick,densely dotted] (P) -- ($(P)!-0.45!(O)$);
@@ -232,22 +232,45 @@
 
     \end{tikzpicture}
     \caption{曲面$S$と微小面素ベクトル$d\bm{S}$}
-    \label{a2}
-\end{figure}
+    \label{surf}
+\end{wrapfigure}
+本節では、一般に点が円に対して見込む立体角を導出する。\par
 一般に、点Oから面積Sの曲面Sを見込む立体角$\Omega$は次のように定義される。
 \begin{equation}
     \Omega = \int_{S} \frac{\bm{r} \cdot d\bm{S}}{r^3}
+    \label{defOm}
 \end{equation}
 これを用いて、必要な立体角の表式を求めていく。
-\begin{figure}
+\begin{figure}[b]
     \centering
-    \tdplotsetmaincoords{110}{60}
+    \tdplotsetmaincoords{75}{310}
     \begin{tikzpicture}[tdplot_main_coords]
-        \draw[->, thick, >=Latex] (-1,0,0) -- (10, 0, 0);
+        \draw[thick] (-5, 0, 0) -- (7, 0, 0);
+        \draw[thick, dashed] (7, 0, 0) -- (9.2, 0, 0);
+        \draw[->, thick, >=Latex] (9.2, 0, 0) -- (15, 0, 0);
+        \draw[->, thick, >=Latex] (0, -1, 0) -- (7, 1.2, 0.8);
         \draw[thick, canvas is yz plane at x=7] (2, 0) arc (0:360:2);
-        \fill (0, 0, 0) circle (2pt);
+        \draw[->, thick, >=Latex] (7, 0, 0) -- (7, -2, 0);
+        \draw[->, thick, >=Latex] (7, -2, 0) -- (7, 0, 0);
+        \draw[thick] (0, 0, 0) -- (0, -1 ,0);
 
-        \node at (0, -0.5, 0) {O};
+        \fill (0, 0, 0) circle (2pt);
+        \fill(0, -1, 0) circle (2pt);
+        \fill(7, 0, 0) circle (2pt);
+        \fill(7, 1.2, 0.8) circle (2pt);
+        \draw[thick] (0, 0) arc (130:95:7);
+        \draw[thick] (7, 0) arc (0:90:1.7);
+    
+
+
+        \node at (0, 0.5, 0) {O};
+        \node[below] at (0, -1, 0) {P};
+        \node at (5, 0.8, 0.8) {$\bm{r}$};
+        \node at (4.5, 1.55, 0) {$l$};
+        \node at (7, -2.3, -0.3) {$C$};
+        \node at (7, -1, -0.3) {$R$};
+        \node at (0, -0.5, -0.2) {$h$};
+
         
         
     \end{tikzpicture}
