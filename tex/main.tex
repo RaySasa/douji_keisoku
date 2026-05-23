@@ -153,8 +153,8 @@
 同時に測定された$\gamma$線の計数を調べるには、同時に発生して2つの検出器に検出された$\gamma$線の割合を調べればよい。
 検出器が検出する放射線の計数は、放射線源が検出面に対して見込む立体格に比例する。よって、先の割合に線源から検出器を見込む立体角をかけることでその計数が求められる。
 また、線源は点ではなく大きさをもつので、以上の計算を線源内の全ての点において計算してその和をもとめることで、最終的な計数の角度分布が得られる。\par
-以上を踏まえて、次のような流れで計算を実行する。線源内の点Pの座標を$(x, \rho \sin\varphi, \rho \cos\varphi)\ 
-(-d/2 \le x \le d/2 ,\ 0 \le \rho \le r, \ 0 \le \varphi \le 2\pi)$として、点Pから検出器小を見込む立体角を調べる。
+以上を踏まえて、次のような流れで計算を実行する。線源内の点Pの座標を$(x_p, \rho \sin\varphi, \rho \cos\varphi)\ 
+(-d/2 \le x_p \le d/2 ,\ 0 \le \rho \le r, \ 0 \le \varphi \le 2\pi)$として、点Pから検出器小を見込む立体角を調べる。
 そのままでは計算が煩雑なので、先に一般の点が円を見込む立体角の式を求める。
 次に、検出器小に検出された$\gamma$線のうち、同時に発生して反対方向に飛んだ$\gamma$線が検出器大にも検出された割合を調べる。
 点Pから見た検出器小の検出面を$180^{\circ}$反転させて、検出器大に投影する。
@@ -364,15 +364,15 @@ $\psi = (\pi - \phi) / 2$と置換すると、
     \label{system2}
 \end{figure}
 このとき、点Pが検出器小の検出面に対して見込む立体角は$\mathrm{\overline{PQ}}$と$\mathrm{\overline{QH}}$がわかれば求められる。
-$\mathrm{\overline{PQ}}$は、点$\mathrm{P}(x, \rho\sin\varphi, \rho\cos\varphi)$と直線$\mathrm{OH}:y=\tan \theta\cdot x$の距離を考えることで、
+$\mathrm{\overline{PQ}}$は、点$\mathrm{P}(x_p, \rho\sin\varphi, \rho\cos\varphi)$と直線$\mathrm{OH}:y=\tan \theta\cdot x$の距離を考えることで、
 \begin{equation}
-    \mathrm{\overline{PQ}} = \left| x\sin\theta - \rho\sin\varphi\cos\theta \right|
+    \mathrm{\overline{PQ}} = \left| x_p \sin\theta - \rho\sin\varphi\cos\theta \right|
 \end{equation}
 が得られる。$\mathrm{\overline{OQ}}$は$\overrightarrow{\mathrm{OP}}$の直線HQへの正射影で得られる。
 HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \begin{align}
     \mathrm{\overline{OQ}} & = \frac{\overrightarrow{\mathrm{OP}} \cdot (\cos\theta, \sin\theta)}{\left| \overrightarrow{\mathrm{OP}} \right|}\\
-    & = x \cos\theta + \rho \sin\theta \sin\varphi
+    & = x_p \cos\theta + \rho \sin\theta \sin\varphi
 \end{align}
 となる。よって、線源内の点Pが検出器小の検出面を見込む立体角は次の式で与えられる。
 \begin{equation}
@@ -380,8 +380,8 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \begin{aligned}
     & \Omega(l, h, R) = \frac{2 \pi l}{\sqrt{l^2 + h^2}} - \frac{4l}{\sqrt{l^2 + (h + R)^2}} K(\eta)\\
     & \eta = 2 \sqrt{\frac{hR}{l^2 + (h + R)^2}} \\
-    & l = L + \mathrm{\overline{OQ}} = L + x\cos\theta +\rho \sin\theta \sin\varphi \\
-    & h = \mathrm{\overline{PQ}} = \left| x\sin\theta - \rho\sin\varphi\cos\theta \right|
+    & l = L + \mathrm{\overline{OQ}} = L + x_p \cos\theta +\rho \sin\theta \sin\varphi \\
+    & h = \mathrm{\overline{PQ}} = \left| x_p \sin\theta - \rho\sin\varphi\cos\theta \right|
     \end{aligned}
 \right.
 \end{equation}
@@ -433,7 +433,31 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \end{figure}
 図\ref{system3}のように点Tを中心とする投影面(円)を$S$、それを平面$x=c$に写した面を$S^{\prime}$とする。
 本来であれば、$S$は$x=c$と接するような面でなければいけないのだが、計算を簡単にするためにこのように近似する。
-同様に$S^{\prime}$は、検出器小と垂直な方向から$S$を$x=c$に射影した面とする。以下で$S$と$S^{\prime}$の面積を計算するために必要な量を順に求めていく。
+同様に$S^{\prime}$は、検出器小と垂直な方向から$S$を$x=c$に射影した面とする。以下で$S$と$S^{\prime}$の面積を得るために必要な量を順に求めていく。
+\subsection{点Tの座標}
+本項では直線HPの式を求め、平面$x=c$との交点を求めることで点Tの座標を得る。点Hの座標は$H(-L\cos\theta, -L\sin\theta, 0)$なので、ベクトル$\overrightarrow{\mathrm{HP}}$は、
+\begin{equation}
+    \overrightarrow{\mathrm{HP}} = (x_p + L\cos\theta, \rho\sin\varphi + L\sin\theta, \rho\cos\varphi) \equiv (x_{\mathrm{HP}}, y_{\mathrm{HP}}, z_{\mathrm{HP}})
+\end{equation}
+である。よって直線HPの式は、
+\begin{equation}
+    \frac{x + L\cos\theta}{x_p + L\cos\theta} = \frac{y + L\sin\theta}{\rho\sin\varphi + L\sin\theta} = \frac{z}{\rho\cos\varphi}
+\end{equation}
+となる。よって点Tの$y,z$座標$y_{\mathrm{T}},z_{\mathrm{T}}$
+\begin{equation}
+\left\{ \,
+    \begin{aligned}
+    & y_{\mathrm{T}} = \frac{y_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c - x_p) + \rho\sin\varphi = \frac{y_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c + L\cos\theta) - L\sin\theta\\
+    &\\
+    & z_{\mathrm{T}} = \frac{z_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c - x_p) + \rho\cos\varphi = \frac{z_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c + L\cos\theta)
+    \end{aligned}
+\right.
+\end{equation}
+を得る。また、ベクトル$\overrightarrow{\mathrm{HP}}$の大きさは、
+\begin{equation}
+    \left| \overrightarrow{\mathrm{HP}} \right| = \sqrt{ x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi }
+\end{equation}
+である。
 
 
 
