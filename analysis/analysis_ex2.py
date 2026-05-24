@@ -5,16 +5,19 @@ import numpy as np
 from scipy.optimize import curve_fit
 from scipy.special import *
 
+#texフォントを使用
+plt.rcParams["text.usetex"] = True
+
 M = 100
-the = np.linspace(0, 70, 100)
+the = np.linspace(0, 90, 100)
 thr = np.radians(the)
 
-L = 5
+L = 5.5
 Rs = 1.27
 Rb = 2.54
-c = 5
-d = 0.3
-r = 0.4
+c = 5.5
+d = 0.5
+r = 0.5
 lam = 0.7 #減衰率
 
 x_arr = np.linspace(-d/2, d/2, M)
@@ -45,10 +48,19 @@ for th in thr:
     h = np.abs(x * np.sin(th) - rho * np.sin(phi) * np.cos(th))
     Om = Omega(l, h, Rs)
 
-    xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
-    cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
-    b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (np.pi)) / (x + L * np.cos(th))
-    a = b / cpsi #(x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
+    xhp = x + L*np.cos(th)
+    yhp = rho * np.sin(phi) + L * np.sin(th)
+    zhp = rho * np.cos(phi)
+    yT = yhp * (c + L * np.cos(th))/xhp - L * np.sin(th)
+    zT = zhp * (c + L * np.cos(th))/xhp
+    xT = np.sqrt(yT**2 + zT**2)
+    #xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
+    cpsi = xhp / np.sqrt(xhp**2 + yhp**2 + zhp**2)
+    #cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
+    b = (c - x) * np.sqrt(xhp**2 + yhp**2 + zhp**2) /xhp * np.sqrt(Om / np.pi)
+    #b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (np.pi)) / (x + L * np.cos(th))
+    a = b / cpsi 
+    #a = (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
     x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
 
     #被積分関数
@@ -61,7 +73,6 @@ for th in thr:
     n[mask1] = 0
     n[mask2] = Om[mask2]
     n[mask3] = (Fc(Rb) - Fc(x0[mask3]) + Fe(x0[mask3], xT[mask3], a[mask3], b[mask3]) - Fe(xT[mask3] - a[mask3], xT[mask3], a[mask3], b[mask3])) * cpsi[mask3] * Om[mask3] / (np.pi * b[mask3]**2) 
-
 
 
     # 円柱座標の体積要素
@@ -80,6 +91,16 @@ for th in thr:
 
 result = np.array(result)
 
-plt.plot(the, result)
-plt.savefig("tex/analysis_ex2.png", dpi=300, bbox_inches="tight")
+
+plt.xlabel(rf"$\theta$")
+plt.ylabel(rf"$N(\theta)/N_0$")
+plt.grid(linestyle = "--", linewidth = 0.5)
+plt.plot(the, result/ result[0])
+# 枠線を表示
+#ax = plt.gca()
+#ax.spines['top'].set_visible(True)
+#ax.spines['right'].set_visible(True)
+#ax.spines['bottom'].set_visible(True)
+#ax.spines['left'].set_visible(True)
+plt.savefig("tex/analysis_ex2_final.pdf", dpi=300, bbox_inches="tight")
 plt.show()
