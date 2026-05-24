@@ -466,7 +466,7 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \end{equation}
 である。
 %A5.2
-\subsection{投影面$S_0$と検出器大の検出面の成す角と$S_0,S_1$の面積}
+\subsection{投影面$S_0$と検出器大の検出面の成す角と$S_0$の面積}
 \begin{wrapfigure}{r}{0.35\textwidth}
     \centering
     \begin{tikzpicture}
@@ -523,8 +523,23 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     & = \frac{c - x_p}{x_{\mathrm{HP}}} \lvert \overrightarrow{\mathrm{HP}} \rvert \\
     & = \frac{c - x_p}{x_{\mathrm{HP}}} \sqrt{ x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi }
 \end{align}
+となる。これにより、投影面$S_0$の面積が与えられる。$S_0$の半径を$b$とすると、
+\begin{equation}
+    S_0(x_p, \rho, \varphi) = \lvert \overrightarrow{\mathrm{PT}} \rvert^2 \cdot \Omega(l, h, R) = \pi b^2
+\end{equation}
+より、
+\begin{align}
+    b(x_p, \rho, \varphi)
+    & = \lvert \overrightarrow{\mathrm{PT}} \rvert \sqrt{\frac{\Omega(l, h, R)}{\pi}} \\
+    & = \frac{c - x_p}{x_p + L\cos\theta} \sqrt{ (x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi) \frac{\Omega(l, h, R)}{\pi}}
+\end{align}
+を得る。$b$は射影面(楕円)$S_1$の半短軸である。半長軸を$a$とすると、
+\begin{align}
+    a(x_p, \rho, \varphi)
+    & = \frac{b(x_p, \rho, \varphi)}{\cos\chi(x_p, \rho, \varphi)} \\
+    & = \left(\frac{x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi}{x_p + L\cos\theta} \right)^2 (c - x_p) \sqrt{\frac{\Omega(l, h, R)}{\pi}}
+\end{align}
 となる。
-
 
 
 
