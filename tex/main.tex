@@ -29,6 +29,12 @@
 \usetikzlibrary{math}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{intersections}
+\usetikzlibrary{backgrounds}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
 
 % =========================
 % 枠・装飾
@@ -542,6 +548,47 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 となる。
 \subsection{射影面$S_1$と検出器大の共通部分の面積}
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale= 1.5]
+        % 図形を path として定義
+        \path[name path=C] (0,0) circle (4);
+        \path[name path=E] (3,0) ellipse (2 and 1.5);
+
+        \draw[thick, ->, >=Latex] (-6, 0) -- (6, 0);
+        \draw[thick, ->, >=Latex] (0, -5) -- (0, 5);
+        \draw[thick] (0,0) circle (4);
+        \draw[thick] (3,0) ellipse [x radius=2,y radius=1.5];
+
+        % 交点を取得
+        \path[name intersections={of=C and E, by={A,B}}];
+
+        \draw[thick, dashed] (A) -- (A |- 0,0); 
+
+        \fill (3,0) circle (1.5pt);
+        \fill (A |- 0,0) circle (1.5pt);
+
+        \node at (4.2, -0.2) {$R_b$};
+        \node at (0.6, -0.2) {$x_T^{\prime}-a$};
+        \node[fill=white, inner sep=2pt] at (3, -0.3) {$x_T^{\prime}$};
+        \node[fill=white, inner sep=2pt] at (A |- 0, -0.3) {$x_0^{\prime}$};
+        \node at (6, -0.15) {$x^{\prime}$};
+        \node at (-0.15, 5) {$y^{\prime}$};
+        \node[below left] at (0,0) {$\mathrm{O}^{\prime}$};
+        \node at (5, 0.8) {$S_1$};
+        \node at (-2, 3.2) {$S_2$};
+
+        %網書け
+        \begin{pgfonlayer}{background}
+            \begin{scope}
+                \clip (0,0) circle (4);
+                \fill[pattern={Lines[angle=45,distance=4pt]}, pattern color=gray] (3,0) ellipse (2 and 1.5);
+            \end{scope}
+        \end{pgfonlayer}
+    \end{tikzpicture}
+    \caption{検出器大の検出面}
+    \label{Oprime}
+\end{figure}
 
 
 
