@@ -465,7 +465,8 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \begin{tikzpicture}[scale = 1]
         \draw[thick] (0, -2.5) -- (0, 2.5);
         \fill (0, 0) circle (1.5pt);
-        \draw[thick] ( {-2*cos(30)},{-2*sin(30)}) --( {2*cos(30)} ,{ 2*sin(30)});
+        \draw[thick] ( {-2*cos(30)},{-2*sin(30)}) --({2*cos(30)} ,{ 2*sin(30)});
+        \draw[thick, dashed, ->, >=Latex] (0, 0) -- (1, 0);
 
         \node at (0.5, -0.5) {T};
     \end{tikzpicture}
