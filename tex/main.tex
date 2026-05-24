@@ -462,7 +462,7 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \subsection{投影面$S$と検出器大の検出面の成す角}
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[scale = 1]
+    \begin{tikzpicture}[scale = 1.5]
         \draw[thick] (0, -2.5) -- (0, 1);
         \draw[thick, dashed] (0, 1) -- (0, 2.5);
         \draw[thick] (0, 1) -- (3, 1);
@@ -473,14 +473,20 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
         \draw[thick] (0.5, 0) arc (0:30:0.5);
         \draw[thick] (0, 0.5) arc (90:120:0.5);
         \draw[thick, dashed] ({2*cos(120)}, {2*sin(120)}) -- (0, {-tan(30)*2*cos(120)+2*sin(120)});
-        \draw[thick, dashed] ({-2*cos(120)}, {-2*sin(120)}) -- (0, {tan(30)*2*cos(120)-2*sin(120)});
-        \draw[thick] ({1.8*cos(120)}, {1.8*sin(120)}) -- ({-0.8}, {tan(30)*(-0.8-1.8*cos(120))+1.8*cos(120)});
+        \draw[thick, dashed] ({2*cos(300)}, {2*sin(300)}) -- (0, {tan(30)*2*cos(120)-2*sin(120)});
+        \draw[thick] ({1.8*cos(120)}, {1.8*sin(120)}) -- ({1.8*cos(120) + 0.2*cos(30)}, {1.8*sin(120) + 0.2*sin(30)}) -- ({1.8*cos(120) + 0.2*cos(30) + 0.2*cos(120)}, {1.8*sin(120) + 0.2*sin(30) + 0.2*sin(120)});
+        \draw[thick] ({1.8*cos(300)}, {1.8*sin(300)}) -- ({1.8*cos(300) + 0.2*cos(210)}, {1.8*sin(300) + 0.2*sin(210)}) -- ({1.8*cos(300) + 0.2*cos(210) + 0.2*cos(300)}, {1.8*sin(300) + 0.2*sin(210) + 0.2*sin(300)});
+        \draw[thick, red] (0.02, {-tan(30)*2*cos(120)+2*sin(120)}) -- (0.02, {tan(30)*2*cos(120)-2*sin(120)});
 
         \node at (0.4, -0.2) {T};
         \node at (2.3, 0) {$\bm{e}_z$};
         \node at (0.7, 0.17) {$\chi$};
         \node at (-0.17, 0.7) {$\chi$};
+        \node at (1, -2) {$S$};
+        \node[red] at (0.2, 2) {$S^{\prime}$};
     \end{tikzpicture}
+    \label{pointT}
+    \caption{点T付近の拡大図}
 \end{figure}
 
 
