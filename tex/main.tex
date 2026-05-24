@@ -547,6 +547,23 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \end{align}
 となる。
 \subsection{射影面$S_1$と検出器大の共通部分の面積}
+検出器大の検出面を$S_2$とする。$S_2$上に図\ref{Oprime}のような、$S_2$の中心を原点$\mathrm{O}^{\prime}$をとる座標系をとる。
+座標軸は、点Tの座標が$\mathrm{T}(x_\mathrm{T}^{\prime},0)$になるように点Tとともに動くようにとる。
+この系において、$S_1$と$S_2$の共通部分(図\ref{Oprime}の網かけ部分)の面積$S(x_p, \rho, \varphi)$をもとめることで、射影面と検出器大の検出面の共通部分の面積を得る。
+$S_1,S_2$の境界の満たす方程式は、以下の通りである。
+\begin{align}
+    x^{\prime 2} + y^{\prime 2} & = R_b^2 \label{S1eq} \\
+    \frac{(x^{\prime} - x_{\mathrm{T}}^{\prime})^2}{a^2} + \frac{y^{\prime 2}}{b^2} & = 1 \label{S2eq}
+\end{align}
+式(\ref{S1eq})と式(\ref{S2eq})の交点の$x$座標を$x^{\prime}_0$とすると、
+\begin{equation}
+    x_0^{\prime}(x_p, \rho, \varphi) = \frac{b^2 x_{\mathrm{T}}^{\prime} - a \sqrt{ b^2 x_{\mathrm{T}}^{\prime2} - (b^2 - a^2)(R_b^2 - b^2) }}{b^2 - a^2}
+\end{equation}
+である。点Pから出て検出器小に検出された$\gamma$線のうち、検出器大に検出される数の割合を$P(x_p, \rho, \varphi)$とする。
+図\ref{Oprime}からわかるように、$x_{\mathrm{T}}^{\prime} \ge R_b - a$のときに$P(x_p, \rho, \varphi) = 1$、
+$x_{\mathrm{T}}^{\prime} \le R_b + a$のときは$P(x_p, \rho, \varphi) = 0$である。
+よって、$R_b - a \le x_{\mathrm{T}}^{\prime} \le R_b + a$のときの$P(x_p, \rho, \varphi)$を求めれば良い。
+
 
 \begin{figure}[H]
     \centering
@@ -563,20 +580,22 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
         % 交点を取得
         \path[name intersections={of=C and E, by={A,B}}];
 
-        \draw[thick, dashed] (A) -- (A |- 0,0); 
+        \draw[thick, dashed] (A) -- (A |- 0,0);
+        \draw[thick, dashed] (3, 1.5) -- (0, 1.5);
 
         \fill (3,0) circle (1.5pt);
         \fill (A |- 0,0) circle (1.5pt);
 
         \node at (4.2, -0.2) {$R_b$};
-        \node at (0.6, -0.2) {$x_T^{\prime}-a$};
-        \node[fill=white, inner sep=2pt] at (3, -0.3) {$x_T^{\prime}$};
+        \node at (0.6, -0.2) {$x_\mathrm{T}^{\prime}-a$};
+        \node[fill=white, inner sep=2pt] at (3, -0.3) {$x_\mathrm{T}^{\prime}$};
         \node[fill=white, inner sep=2pt] at (A |- 0, -0.3) {$x_0^{\prime}$};
         \node at (6, -0.15) {$x^{\prime}$};
         \node at (-0.15, 5) {$y^{\prime}$};
         \node[below left] at (0,0) {$\mathrm{O}^{\prime}$};
         \node at (5, 0.8) {$S_1$};
         \node at (-2, 3.2) {$S_2$};
+        \node at (-0.2, 1.5) {$b$};
 
         %網書け
         \begin{pgfonlayer}{background}
