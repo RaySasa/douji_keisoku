@@ -1,4 +1,5 @@
 # 同時測定の角度分布(円柱) fitting
+# c固定、d,rをフィッティング
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,60 +8,90 @@ from scipy.special import ellipk
 
 M = 10
 
-L = 5
+L = 5.41
 Rs = 1.27
 Rb = 2.54
-d = 0.2
-r = 0.5
 
-#xex = np.array([0, 10, 20, 25, 30, 35, 45, 60, 75])
-#yex = np.array([11.281, 10.708, 4.967, 1.521, 1.410, 0.678, 0.408, 0.520, 0.408])
+# 固定パラメータ
+c_fixed = 5.93
 
-#をんのデータ
+# 実験データ
 xex = np.array([0, 10, 20, 25, 30, 45])
 yex = np.array([121.602, 96.827, 33.349, 8.325, 1.804, 1.11])
 
-x_arr = np.linspace(-d/2, d/2, M)
-rho_arr = np.linspace(0, r, M)
-phi_arr = np.linspace(0, 2*np.pi, M)
-
-x, rho, phi = np.meshgrid(x_arr, rho_arr, phi_arr, indexing="ij")
-
-
-def Omega(l, h, R):
-    eta2 = 4 * R * h / ((h + R)**2 + l**2)
-    return (
-        2*np.pi*l / np.sqrt(h**2 + l**2)
-        - 4*l*ellipk(eta2) / np.sqrt((h + R)**2 + l**2)
-    )
 
 def safe_arcsin(u):
     return np.arcsin(np.clip(u, -1, 1))
 
-def calc_distribution(theta_deg, c, d, r):
+
+def Omega(l, h, R):
+    h = np.maximum(h, 1e-12)
+
+    eta2 = 4 * R * h / ((h + R)**2 + l**2)
+    eta2 = np.clip(eta2, 0, 1 - 1e-12)
+
+    return (
+        2 * np.pi * l / np.sqrt(h**2 + l**2)
+        - 4 * l * ellipk(eta2) / np.sqrt((h + R)**2 + l**2)
+    )
+
+
+def calc_distribution(theta_deg, d, r):
     thr = np.radians(theta_deg)
+
+    x_arr = np.linspace(-d / 2, d / 2, M)
+    rho_arr = np.linspace(0, r, M)
+    phi_arr = np.linspace(0, 2 * np.pi, M)
+
+    x, rho, phi = np.meshgrid(
+        x_arr,
+        rho_arr,
+        phi_arr,
+        indexing="ij"
+    )
+
+    result = []
 
     def Fc(u):
         return (
-            u*np.sqrt(np.maximum(Rb**2 - u**2, 0))
+            u * np.sqrt(np.maximum(Rb**2 - u**2, 0))
             + Rb**2 * safe_arcsin(u / Rb)
         )
 
     def Fe(u, xT, a, b):
         s = u - xT
         return b / a * (
-            s*np.sqrt(np.maximum(a**2 - s**2, 0))
+            s * np.sqrt(np.maximum(a**2 - s**2, 0))
             + a**2 * safe_arcsin(s / a)
         )
 
-    result = []
-
     for th in thr:
-        l = L + x*np.cos(th) + rho*np.sin(th)*np.sin(phi)
+        sin_th = np.sin(th)
+        cos_th = np.cos(th)
+        sin_phi = np.sin(phi)
+
+        denominator = x + L * cos_th
+        denominator = np.where(
+            np.abs(denominator) < 1e-12,
+            1e-12,
+            denominator
+        )
+
+        distance2 = (
+            x**2
+            + L**2
+            + rho**2
+            + 2 * x * L * cos_th
+            + 2 * rho * L * sin_th * sin_phi
+        )
+
+        distance2 = np.maximum(distance2, 1e-12)
+
+        l = L + x * cos_th + rho * sin_th * sin_phi
 
         h = np.abs(
-            x*np.sin(th)
-            - rho*np.sin(phi)*np.cos(th)
+            x * sin_th
+            - rho * sin_phi * cos_th
         )
 
         Om = Omega(l, h, Rs)
@@ -68,61 +99,52 @@ def calc_distribution(theta_deg, c, d, r):
         xT_inside = (
             (
                 rho**2
-                + L**2*np.sin(th)**2
-                + 2*rho*L*np.sin(phi)*np.sin(th)
+                + L**2 * sin_th**2
+                + 2 * rho * L * sin_phi * sin_th
             )
-            * (c + L*np.cos(th))**2
-            / (x + L*np.cos(th))**2
-            + (L*np.sin(th))**2
+            * (c_fixed + L * cos_th)**2
+            / denominator**2
+            + (L * sin_th)**2
             - 2
-            * (rho*np.sin(phi) + L*np.sin(th))
-            * (c + L*np.cos(th))
-            * L*np.sin(th)
-            / (x + L*np.cos(th))
+            * (rho * sin_phi + L * sin_th)
+            * (c_fixed + L * cos_th)
+            * L * sin_th
+            / denominator
         )
 
         xT = np.sqrt(np.maximum(xT_inside, 0))
 
-        cpsi = (
-            (x + L*np.cos(th))
-            / np.sqrt(
-                x**2 + L**2 + rho**2
-                + 2*x*L*np.cos(th)
-                + 2*rho*L*np.sin(th)*np.sin(phi)
-            )
-        )
+        cpsi = denominator / np.sqrt(distance2)
 
         b = (
-            (c - x)
-            * np.sqrt(
-                (
-                    x**2 + L**2 + rho**2
-                    + 2*x*L*np.cos(th)
-                    + 2*rho*L*np.sin(th)*np.sin(phi)
-                )
-                * Om / (2*np.pi)
-            )
-            / (x + L*np.cos(th))
+            (c_fixed - x)
+            * np.sqrt(distance2 * Om / (2 * np.pi))
+            / denominator
         )
 
+        b = np.maximum(b, 1e-12)
+
         a = b / cpsi
+        a = np.maximum(a, 1e-12)
 
         inside_x0 = (
-            (b*xT)**2
-            - (b**2 - a**2) * (Rb**2 - b**2))
+            (b * xT)**2
+            - (b**2 - a**2) * (Rb**2 - b**2)
+        )
 
         denom_x0 = b**2 - a**2
 
         valid_x0 = (
             (inside_x0 >= 0)
-            & (np.abs(denom_x0) > 1e-12))
+            & (np.abs(denom_x0) > 1e-12)
+        )
 
         x0 = np.full_like(x, np.nan)
 
         x0[valid_x0] = (
             b[valid_x0]**2 * xT[valid_x0]
             - a[valid_x0] * np.sqrt(inside_x0[valid_x0])
-            ) / denom_x0[valid_x0]
+        ) / denom_x0[valid_x0]
 
         n = np.zeros_like(x)
 
@@ -156,27 +178,17 @@ def calc_distribution(theta_deg, c, d, r):
     return np.array(result)
 
 
-#def fit_func(theta_deg, A, B, c, d, r):
-#    theory = calc_distribution(theta_deg, c, d, r)
-#    return A * theory + B
-
-def fit_func(theta_deg, A, B, c):
-    theory = calc_distribution(theta_deg, c, d=0.2, r=0.5)
+def fit_func(theta_deg, A, B, d, r):
+    theory = calc_distribution(theta_deg, d, r)
     return A * theory + B
 
 
-#p0 = [1.0, 0.0, 2.0, 0.2, 0.5]
-
-#bounds = (
-#    [0, -np.inf, 0.0, 0.01, 0.01],
-#   [np.inf, np.inf, 10.0, 2.0, 2.0]
-#)
-
-p0 = [1.0, 0.0, 2.0]
+# 初期値
+p0 = [1.0, 0.0, 0.2, 0.5]
 
 bounds = (
-    [0, -np.inf, 0.0],
-    [np.inf, np.inf, 20.0]
+    [0, -np.inf, 0.01, 0.01],
+    [np.inf, np.inf, 2.0, 2.0]
 )
 
 popt, pcov = curve_fit(
@@ -188,24 +200,25 @@ popt, pcov = curve_fit(
     maxfev=20000
 )
 
-#A_fit, B_fit, c_fit, d_fit, r_fit = popt
-A_fit, B_fit, c_fit = popt
+A_fit, B_fit, d_fit, r_fit = popt
 perr = np.sqrt(np.diag(pcov))
 
 print("===== fitting result =====")
 print("A =", A_fit, "+/-", perr[0])
 print("B =", B_fit, "+/-", perr[1])
-print("c =", c_fit, "+/-", perr[2])
-#print("d =", d_fit, "+/-", perr[3])
-#print("r =", r_fit, "+/-", perr[4])
+print("d =", d_fit, "+/-", perr[2])
+print("r =", r_fit, "+/-", perr[3])
+print("c =", c_fixed, "fixed")
 
 theta_plot = np.linspace(0, 75, 50)
 fit_y = fit_func(theta_plot, *popt)
 
 plt.scatter(xex, yex, label="experiment")
 plt.plot(theta_plot, fit_y, label="fit")
+
 plt.xlabel("theta [deg]")
 plt.ylabel("counts")
 plt.legend()
-plt.savefig("tex/analysis_ex2_fit.pdf", dpi=300, bbox_inches="tight")
+
+plt.savefig("tex/analysis_ex2_fit_dr.pdf", dpi=300, bbox_inches="tight")
 plt.show()

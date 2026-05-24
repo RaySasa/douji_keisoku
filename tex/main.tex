@@ -393,7 +393,7 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 \section{2つの検出器に同時検出される放射線の割合}
 \label{A5}
 点Pから放射された$\gamma$線のうち、検出器小に検出され、同時に発生して反対方向に飛んだ$\gamma$線が検出器大にも検出された割合を調べる。
-\ref{A2}で述べたように、この割合を調べるためには、検出器小の見かけの面を$180^{\circ}$反対方向に投影し、
+\ref{A2}節で述べたように、この割合を調べるためには、検出器小の見かけの面を$180^{\circ}$反対方向に投影し、
 その投影面を検出器大に写して検出器大と重なっている部分の面積を求める必要がある。
 \begin{figure}[H]
     \centering
@@ -498,6 +498,7 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 
 \ref{A5}節で述べたように、投影面$S_0$とその射影$S_1$を図\ref{pT}のように近似する。$S_0$と検出器大の検出面が成す角を$\chi$とする。
 このとき$S_1$の面積は、$\chi$を用いて
+%TikZ(A.6)
 \begin{equation}
     S_1 = \frac{S_0}{\cos\chi}
 \end{equation}
@@ -506,8 +507,24 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \cos\chi & = \frac{\overrightarrow{\mathrm{HP}} \cdot \bm{e}_x}{\lvert \overrightarrow{\mathrm{HP}} \rvert}\\
     & = \frac{x_p + L\cos\theta}{\sqrt{x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi}}
 \end{align}
-となる。また投影面$S$の面積は、式(\ref{Omformula2})の$\Omega(l,h,R)$を用いて、
-%TikZ(A.6)
+となる。また投影面$S_0$の面積$S_0$は、式(\ref{Omformula2})の$\Omega(l,h,R)$を用いて、
+\begin{equation}
+    S_0 = \lvert \overrightarrow{\mathrm{PT}} \rvert^2 \cdot \Omega(l,h,R)
+\end{equation}
+のように表せる。ベクトル$\overrightarrow{\mathrm{PT}}$は、
+\begin{align}
+    \overrightarrow{\mathrm{PT}}
+    & = \left(c - x_p, \frac{y_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c - x_p), \frac{zs_{\mathrm{HP}}}{x_{\mathrm{HP}}}(c - x_p) \right)\\
+    & = \frac{c - x_p}{x_{\mathrm{HP}}} \overrightarrow{\mathrm{HP}}
+\end{align}
+なので、その大きさは、
+\begin{align}
+    \lvert \overrightarrow{\mathrm{PT}} \rvert
+    & = \frac{c - x_p}{x_{\mathrm{HP}}} \lvert \overrightarrow{\mathrm{HP}} \rvert \\
+    & = \frac{c - x_p}{x_{\mathrm{HP}}} \sqrt{ x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi }
+\end{align}
+となる。
+
 
 
 

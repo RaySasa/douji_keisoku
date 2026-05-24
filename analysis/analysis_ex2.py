@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 from scipy.special import *
 
 M = 100
-the = np.linspace(0, 75, 300)
+the = np.linspace(0, 70, 100)
 thr = np.radians(the)
 
 L = 5
@@ -47,7 +47,7 @@ for th in thr:
 
     xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
     cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
-    b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (2 * np.pi)) / (x + L * np.cos(th))
+    b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (np.pi)) / (x + L * np.cos(th))
     a = b / cpsi #(x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
     x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
 
