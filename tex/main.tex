@@ -98,13 +98,13 @@
 
 \appendix
 \chapter{同時測定された$\gamma$線の計数の角度分布}
+%A1
 \section{問題設定}
 本章では、実験1で行った$\gamma$線の同時測定の角度分布の導出を与える。\par
 計算のために、実験装置系に図\ref{system1}のような座標を設定する。ここで$z$軸は紙面手前側に垂直な方向に設定し、原点$\mathrm{O}$は線源の中心にとる。
 線源のケースを除いた本体の厚みを$d$、半径を$r$とする。線源の中心から検出器大までの距離を$c$、検出器大の半径を$R_b$、検出器小の半径を$R_s$とする。
 線源の中心から検出器小までの距離を$L$、原点から検出器小の検出面へおろした垂線と$x$軸の成す角を$\theta$とし。この$\theta$に対する同時検出計数の角度分布を求める。
 ただし、検出器は円形の側面のみで放射線を検出すると仮定し、その面を検出面と呼ぶことにする。
-
 %Tikz(A.1)
 \begin{figure}[H]
     \centering
@@ -148,7 +148,7 @@
     \caption{実験装置の投影図}
     \label{system1}
 \end{figure}
-
+%A2
 \section{計算の方針}
 \label{A2}
 同時に測定された$\gamma$線の計数を調べるには、同時に発生して2つの検出器に検出された$\gamma$線の割合を調べればよい。
@@ -162,8 +162,9 @@
 投影された面のうち、検出器大に含まれる部分の面積を求めてもとの見かけの面積で割ることで、検出器大に検出された$\gamma$線の割合が求められる。
 この割合に検出器小を見込む立体角と単位体積が放射する放射線数をかけることで、点Pから出て同次計測される計数が得られる。
 最後に、この計数を線源の体積全域にわたって積分することで、計数の角度分布が得られる。
-
+%A3
 \section{立体角の導出}
+%TikZ(A.2)
 \begin{wrapfigure}{r}{0.4\textwidth}
     \centering
     \begin{tikzpicture}[scale=0.8, >=stealth]
@@ -249,7 +250,7 @@
 線分OAの長さは$h$で、$\mathrm{OA}\parallel S$である。点Oと円$S$の距離を$l$, $S$の半径を$R$とする。軸の取り方は自由なので、円$S$の法線方向に$z$軸をとる。
 点Aはx軸上に存在することにして、$\mathrm{P}(h, 0, 0)$とする。円$S$上の点をパラメーター$(\xi ,\phi)$を用いて、
 $(\xi\cos\phi, \xi,\sin\phi, l)\ (0 \le \xi \le R , \ 0 \le \phi \le 2\pi)$と表す。
-
+%TikZ(A.3)
 \begin{figure}[H]
     \centering
     \tdplotsetmaincoords{75}{310}
@@ -324,7 +325,7 @@ $\psi = (\pi - \phi) / 2$と置換すると、
     \end{aligned}
 \right.
 \end{equation}
-
+%A4
 \section{立体角の計算}
 次に、実際に線源内の点Pが検出器小の検出面に見込む立体角を求める。検出器小の中心を点H、直線HPと検出器大の交点を点Tとする。
 原点と点Hを通る直線に、点Pから降ろした垂線の足を点Qとする。また、原点をOとする。
@@ -386,7 +387,9 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \end{aligned}
 \right.
 \end{equation}
+%A5
 \section{2つの検出器に同時検出される放射線の割合}
+\label{A5}
 点Pから放射された$\gamma$線のうち、検出器小に検出され、同時に発生して反対方向に飛んだ$\gamma$線が検出器大にも検出された割合を調べる。
 \ref{A2}で述べたように、この割合を調べるためには、検出器小の見かけの面を$180^{\circ}$反対方向に投影し、
 その投影面を検出器大に写して検出器大と重なっている部分の面積を求める必要がある。
@@ -435,6 +438,7 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
 図\ref{system3}のように点Tを中心とする投影面(円)を$S$、それを平面$x=c$に写した面を$S^{\prime}$とする。
 本来であれば、$S$は$x=c$と接するような面でなければいけないのだが、計算を簡単にするためにこのように近似する。
 同様に$S^{\prime}$は、検出器小と垂直な方向から$S$を$x=c$に射影した面とする。以下で$S$と$S^{\prime}$の面積を得るために必要な量を順に求めていく。
+%A5.1
 \subsection{点Tの座標}
 本項では直線HPの式を求め、平面$x=c$との交点を求めることで点Tの座標を得る。点Hの座標は$H(-L\cos\theta, -L\sin\theta, 0)$なので、ベクトル$\overrightarrow{\mathrm{HP}}$は、
 \begin{equation}
@@ -459,8 +463,9 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \lvert \overrightarrow{\mathrm{HP}} \rvert = \sqrt{ x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi }
 \end{equation}
 である。
-\subsection{投影面$S$と検出器大の検出面の成す角}
-\begin{figure}[H]
+%A5.2
+\subsection{投影面$S$と検出器大の検出面の成す角と$S,S^{\prime}$の面積}
+\begin{wrapfigure}{r}{0.4\textwidth}
     \centering
     \begin{tikzpicture}[scale = 1.5]
         \draw[thick] (0, -2.5) -- (0, 1);
@@ -487,7 +492,8 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \end{tikzpicture}
     \label{pointT}
     \caption{点T付近の拡大図}
-\end{figure}
+\end{wrapfigure}
+\ref{A5}節で述べたように、投影面$S$とその射影$S^{\prime}$を図\ref{pointT}のように近似する。
 
 
 
