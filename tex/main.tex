@@ -459,6 +459,17 @@ HQ方向の単位ベクトルは$(\cos\theta, \sin\theta)$なので、
     \lvert \overrightarrow{\mathrm{HP}} \rvert = \sqrt{ x_p^2 + L^2 + \rho^2 + 2x_p L\cos\theta +2\rho L\sin\theta\sin\varphi }
 \end{equation}
 である。
+\subsection{投影面$S$と検出器大の検出面の成す角}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale = 1]
+        \draw[thick] (0, -2.5) -- (0, 2.5);
+        \fill (0, 0) circle (1.5pt);
+        \draw[thick] ( {-2*cos(30)},{-2*sin(30)}) --( {2*cos(30)} ,{ 2*sin(30)});
+
+        \node at (0.5, -0.5) {T};
+    \end{tikzpicture}
+\end{figure}
 
 
 
