@@ -54,14 +54,30 @@ for th in thr:
     yT = yhp * (c + L * np.cos(th))/xhp - L * np.sin(th)
     zT = zhp * (c + L * np.cos(th))/xhp
     xT = np.sqrt(yT**2 + zT**2)
-    #xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
+
     cpsi = xhp / np.sqrt(xhp**2 + yhp**2 + zhp**2)
-    #cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
     b = (c - x) * np.sqrt(xhp**2 + yhp**2 + zhp**2) /xhp * np.sqrt(Om / np.pi)
-    #b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (np.pi)) / (x + L * np.cos(th))
     a = b / cpsi 
+
+    D = (b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2)
+    den = b**2 - a**2
+
+    mask = (D >= 0) & (np.abs(den) > 1e-12)
+    
+
+    x0 = np.full_like(D, np.nan)
+
+    x0[mask] = (b[mask]**2 * xT[mask] - a[mask] * np.sqrt(D[mask])) / den[mask]
+
+
+    
+    #x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
+
+    #xT = np.sqrt( (rho**2 + L**2 * np.sin(th)**2 + 2 * rho * L * np.sin(phi) * np.sin(th))*(c + L * np.cos(th))**2 / (x + L * np.cos(th))**2 + (L * np.sin(th))**2 - 2 * (rho * np.sin(phi) + L * np.sin(th)) * (c + L * np.cos(th)) * L * np.sin(th) / (x + L * np.cos(th))) 
+    #cpsi = (x + L * np.cos(th)) / (np.sqrt( (x**2 + L**2 +rho**2 + 2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi))))
+    #b = (c - x) * np.sqrt( (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * Om / (np.pi)) / (x + L * np.cos(th))
     #a = (x**2 + L**2 +rho**2 +2 * x * L * np.cos(th) + 2 * rho * L * np.sin(th) * np.sin(phi)) * (c - x) * Om / (2 * np.pi * (x + L * np.cos(th))**2)
-    x0 = (b**2 * xT - a * np.sqrt((b * xT)**2 - (b**2 - a**2) * (Rb**2 - b**2))) / (b**2 - a**2)
+
 
     #被積分関数
     n = np.zeros_like(x)
