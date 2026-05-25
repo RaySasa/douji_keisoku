@@ -92,7 +92,7 @@ for th in thr:
 result = np.array(result)
 
 
-plt.xlabel(rf"$\theta$")
+plt.xlabel(rf"$\theta$ [degree]")
 plt.ylabel(rf"$N(\theta)/N_0$")
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.plot(the, result/ result[0])
