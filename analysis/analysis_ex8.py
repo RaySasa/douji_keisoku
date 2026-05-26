@@ -1,4 +1,4 @@
-# 同時測定の角度分布(円柱) fitting + theta冪級数補正
+# 同時測定の角度分布(円柱) fitting + cos(theta)(1-alpha sin^2(theta))補正
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,7 +22,6 @@ d = 0.2
 r = 0.5
 
 
-# 関数定義
 def Omega(l, h, R):
     eta2 = 4 * R * h / ((h + R)**2 + l**2)
     return 2 * np.pi * l / np.sqrt(h**2 + l**2) - 4 * l * ellipk(eta2) / np.sqrt((h + R)**2 + l**2)
@@ -40,9 +39,7 @@ def Fe(x, xT, a, b):
     return b / a * ((x - xT) * np.sqrt(np.abs(a**2 - (x - xT)**2)) + a**2 * safe_arcsin((x - xT) / a))
 
 
-# 理論曲線
 def calc_distribution(theta_deg):
-
     theta_deg = np.asarray(theta_deg)
     theta_rad = np.radians(theta_deg)
 
@@ -55,7 +52,6 @@ def calc_distribution(theta_deg):
     result = []
 
     for th in theta_rad:
-
         l = L + x * np.cos(th) + rho * np.sin(th) * np.sin(phi)
         h = np.abs(x * np.sin(th) - rho * np.sin(phi) * np.cos(th))
         Om = Omega(l, h, Rs)
@@ -79,7 +75,6 @@ def calc_distribution(theta_deg):
         mask = (D >= 0) & (np.abs(den) > 1e-12)
 
         x0 = np.full_like(D, np.nan)
-
         x0[mask] = (b[mask]**2 * xT[mask] - a[mask] * np.sqrt(D[mask])) / den[mask]
 
         n = np.zeros_like(x)
@@ -104,56 +99,40 @@ def calc_distribution(theta_deg):
     return np.array(result)
 
 
-# theta冪級数補正
-def correction(theta_deg, a2, a4):
-
+def correction(theta_deg, alpha):
     theta = np.radians(theta_deg)
+    return np.cos(theta) * (1 - alpha * np.sin(theta)**2)
 
-    return 1 + a2 * theta**2 + a4 * theta**4
 
-
-# フィッティング関数
-def fit_func(theta_deg, N0, a2, a4):
-
+def fit_func(theta_deg, N0, alpha):
     model = calc_distribution(theta_deg)
+    return N0 * model / model[0] * correction(theta_deg, alpha)
 
-    return N0 * model / model[0] * correction(theta_deg, a2, a4)
 
+popt, pcov = curve_fit(fit_func, xex, yex, p0=[yex[0], 0.3], bounds=([0, 0], [np.inf, 1]))
 
-# フィッティング
-popt, pcov = curve_fit(
-    fit_func,
-    xex,
-    yex,
-    p0=[yex[0], -1.0, 0.1]
-)
-
-N0_fit, a2_fit, a4_fit = popt
-N0_err, a2_err, a4_err = np.sqrt(np.diag(pcov))
+N0_fit, alpha_fit = popt
+N0_err, alpha_err = np.sqrt(np.diag(pcov))
 
 print(f"N0 = {N0_fit:.6g} ± {N0_err:.6g}")
-print(f"a2 = {a2_fit:.6g} ± {a2_err:.6g}")
-print(f"a4 = {a4_fit:.6g} ± {a4_err:.6g}")
+print(f"alpha = {alpha_fit:.6g} ± {alpha_err:.6g}")
 
 
-# 描画
 theta_plot = np.linspace(0, 75, 100)
 
-y_theory = fit_func(theta_plot, N0_fit, 0, 0)
-y_fit = fit_func(theta_plot, N0_fit, a2_fit, a4_fit)
+model_plot = calc_distribution(theta_plot)
+y_theory = N0_fit * model_plot / model_plot[0]
+y_fit = fit_func(theta_plot, N0_fit, alpha_fit)
 
 plt.figure()
-
 plt.scatter(xex, yex, label="Experiment")
 plt.plot(theta_plot, y_theory, linestyle="--", label="Original theory")
-plt.plot(theta_plot, y_fit, label=r"$1+a_2\theta^2+a_4\theta^4$ corrected fit")
+plt.plot(theta_plot, y_fit, label=r"$\cos\theta(1-\alpha\sin^2\theta)$ corrected fit")
 
 plt.xlabel(r"$\theta$ [degree]")
 plt.ylabel(r"$N(\theta)$")
-
 plt.grid(linestyle="--", linewidth=0.5)
 plt.legend()
 
-plt.savefig("analysis_ex8_fit_series.pdf", dpi=300, bbox_inches="tight")
-
+plt.savefig("tex/analysis_ex10_fit_cos_sin2.pdf", dpi=300, bbox_inches="tight")
 plt.show()

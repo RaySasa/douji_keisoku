@@ -7,13 +7,13 @@ from scipy.optimize import curve_fit
 def Om(l,Rs):
     return 2 * np.pi * (1 - l / np.sqrt(Rs**2 + l**2))
 
-th = np.linspace(0,  80, 100000)
+th = np.linspace(0,  80, 10000)
 thr = np.radians(th)
 
-l = 5
+l = 5.5
 Rs = 1.27
 Rb = 2.54
-c = 3
+c = 5.5
 Om = Om(l, Rs)
 b = c * np.sqrt(Om / (2 * np.pi)) / np.cos(thr)
 a = b / np.cos(thr)
@@ -40,13 +40,13 @@ for i in range(len(thr)):
 F = S * np.cos(thr) / (np.pi * b**2)
 M = np.zeros(len(thr))
 for i in range(len(thr)):
-    M = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
+    M[i] = Fc(Rb) - Fc(x0[i]) + Fe(i, x0[i]) - Fe(i, xT[i] - a[i])
 
-#plt.plot(th, F)
+plt.plot(th, F)
 #plt.plot([0,80],[0,0])    
-plt.plot(th, np.full([len(th), 1], Rb) , label= "R")
-plt.plot(th, xT + a, label= "x+a")
-plt.plot(th, xT - a, label= "x-a")
+#plt.plot(th, np.full([len(th), 1], Rb) , label= "R")
+##plt.plot(th, xT + a, label= "x+a")
+#plt.plot(th, xT - a, label= "x-a")
 plt.legend()
 plt.savefig("tex/analysis_ex.pdf", dpi=300, bbox_inches="tight")
 plt.show()

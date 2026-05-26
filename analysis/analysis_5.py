@@ -32,7 +32,7 @@ def E(t):
 x_fit = np.linspace(0, 90, 300)
 Ec = E(x_fit)
 
-print(E(30))
+print(ykeV)
 
 plt.scatter(x, ykeV, label="data", marker='o', s=20)
 plt.plot(x_fit, Ec, linewidth = 1.0)
