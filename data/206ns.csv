@@ -1,11 +1,11 @@
 [Header]
 Measurement mode,Live Time
 Measurement time,300
-Real time,1
-Live time,1
-Dead time,0
-Start Time,2026/05/13 14:53:09
-End Time,2026/05/13 14:53:10
+Real time,8
+Live time,7
+Dead time,1
+Start Time,2026/05/13 14:58:35
+End Time,2026/05/13 14:58:43
 //CH#,ADG,THR,LLD,ULD,OFS
 CH1,5,0,0,511,0
 MOD,0
@@ -27,7 +27,7 @@ ROI0,376,449,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 [Status]
 //CH,throughput count,throughput rate(cps)
-CH1,67711,24985
+CH1,382695,49970
 
 [Data]
 //ch,CH1
@@ -56,7 +56,7 @@ CH1,67711,24985
 22,0
 23,0
 24,0
-25,51741
+25,0
 26,0
 27,0
 28,0
@@ -133,7 +133,7 @@ CH1,67711,24985
 99,0
 100,0
 101,0
-102,0
+102,365680
 103,0
 104,0
 105,0

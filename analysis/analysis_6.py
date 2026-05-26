@@ -5,15 +5,15 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 #データ
-xex = np.array([45, 60, 75, 90])#角度
-yex = np.array([3.208, 2.868, 2.431, 2.072])#cps
+xex = np.array([30, 45, 60, 75, 90])#角度
+yex = np.array([3.01, 3.208, 2.868, 2.431, 2.072])#cps
 
-r = np.array([0.085, 0.1, 0.105, 0.16])
+r = np.array([0.015, 0.02, 0.03, 0.04, 0.07])
 x = 2.54
 rho = 3.67
 mu = r * 3.67
 
-ycor = yex * (1 - np.exp(- mu * x))
+ycor = yex / (1 - np.exp(- mu * x))
 
 # constants [keV]
 E_gamma = 661.7
@@ -21,45 +21,43 @@ mc2 = 511.0
 
 alpha = E_gamma / mc2
 
-def klein_nishina(theta):
+def klein_nishina(theta, a):
     """
     theta: scattering angle [rad]
     returns y = dσ/dΩ up to factor r_e^2
     """
-    return (
+    return a * (
         (1 / (1 + alpha * (1 - np.cos(theta))))**2
         * ((1 + np.cos(theta)**2) / 2)
         * (1 + (alpha**2 * (1 - np.cos(theta))**2)
            / ((1 + np.cos(theta)**2) * (1 + alpha * (1 - np.cos(theta)))))
-    )
+    ) 
 
 # theta [degree]
 theta_deg = np.linspace(0, 90, 1000)
 theta_rad = np.deg2rad(theta_deg)
 
-y = klein_nishina(theta_rad)
-
-def fit_func(theta_rad, a, b):
-    return a * klein_nishina(theta_rad) + b
+y = klein_nishina(theta_rad, 1)
 
 #フィット
-popt, pcov = curve_fit(fit_func, a, b)
+popt, pcov = curve_fit(klein_nishina, xex, ycor,  p0=[40],bounds=(40, np.inf))
 #係数
-#a_c = popt[0]
-#b_c = popt[1]
+a = popt[0]
+#b = popt[1]
 #誤差
-#da_c = np.sqrt(pcov[0,0])
-#db_c = np.sqrt(pcov[1,1])
+da = np.sqrt(pcov[0,0])
+#db = np.sqrt(pcov[1,1])
 #曲線
-y_cfit = np.linspace(min(y_keV), max(y_keV), 300)
-R_cfit = f(y_cfit, a_l, b_l)
+y_fit = klein_nishina(theta_rad, a)
 
-#plt.plot(theta_deg, y)
-plt.xlabel("theta [degree]")
+print(a)
+
+plt.plot(theta_deg, y_fit)
+plt.xlabel("theta [degree]")#
 plt.ylabel("y")
 plt.grid()
 
-plt.scatter(xex, yex, label="data", marker='o', s=20)
-#plt.scatter(xex, ycor, label="data", marker='o', s=20)
-
+#plt.scatter(xex, yex, label="data", marker='o', s=20)
+plt.scatter(xex, ycor, label="data", marker='o', s=20)
+plt.savefig("tex/analysis_6.pdf", dpi=300, bbox_inches="tight")
 plt.show()
