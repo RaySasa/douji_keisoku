@@ -50,7 +50,7 @@ da = np.sqrt(pcov[0,0])
 #曲線
 y_fit = klein_nishina(theta_rad, a)
 
-print(a)
+print(ycor)
 
 plt.plot(theta_deg, y_fit)
 plt.xlabel("theta [degree]")#
