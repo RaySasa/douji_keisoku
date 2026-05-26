@@ -48,6 +48,8 @@
 % =========================
 \usepackage[top=20mm, bottom=20mm, left=20mm, right=20mm]{geometry}
 \usepackage{nidanfloat}
+\usepackage{enumitem}
+\usepackage{varwidth}
 
 % =========================
 % 日本語
@@ -96,11 +98,25 @@
 
 
 
-\chapter{実験手法}
+
 
 \chapter{実験1（電子・陽電子対消滅の観測）}
 \section{実験の目的}
 電子・陽電子対消滅を2つの検出器を用いた同時計測によって観測する。また、本実験によりエネルギー・時間スペクトル測定についての理解を深める。
+\section{測定原理}
+$^{22}\mathrm{Na}$は陽電子崩壊によって陽電子を放出する。この陽電子は物質中を進む中で、電子と衝突を繰り返す。
+最終的に、エネルギーを失って周囲の電子と結合して対消滅し、$511\,\mathrm{keV}$のエネルギーを持つ2本の$\gamma$線を同時に$180^{\circ}$反対方向に放出される。
+本実験では、この対消滅反応の観測を目指す。反応の前後でエネルギーと運動量が保存することから、以下の条件が成り立つ。
+\begin{center}
+    \begin{varwidth}{0.8\textwidth}
+        \begin{itemize}
+            \item[\textbf{条件1：}] 2本の$\gamma$線のエネルギーが共に$511\,\mathrm{keV}$である。
+            \item[\textbf{条件2：}] 2本の$\gamma$線が同時に観測される。
+            \item[\textbf{条件3：}] 2本の$\gamma$線のなす角は$180^{\circ}$である。 
+        \end{itemize}
+    \end{varwidth}
+\end{center}
+本実験では以上の3条件を満たす2つの$\gamma$線を選んで観測し、これを対消滅事象と判定することで対消滅を間接的に観測する。
 
 
 \chapter{実験2}
@@ -130,7 +146,7 @@
     \end{tabular}
     \caption{クロック回路の観察結果}
 \end{table}
-
+\section{電圧分割器(Divider)}
 
 
 
