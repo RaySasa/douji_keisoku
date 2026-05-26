@@ -15,7 +15,7 @@ thr = np.radians(the)
 L = 5.5
 Rs = 1.27
 Rb = 2.54
-c = 5.5
+c = 2.6
 d = 0.2
 r = 0.4
 
