@@ -20,11 +20,11 @@ def load_spectrum(filename):
 
     return ch, count
 
-ch, count =  load_spectrum("22Na_spectrum.csv")
+ch, count =  load_spectrum("137Cs_spectrum.csv")
 
 plt.plot(ch, count)
 plt.xlabel("ch")
 plt.ylabel("count")
 plt.grid(linestyle = "--", linewidth = 0.5)
-plt.savefig("../tex/22Na_spectrum.pdf")
+plt.savefig("../tex/137Cs_spectrum.pdf", dpi=300, bbox_inches="tight")
 plt.show()
