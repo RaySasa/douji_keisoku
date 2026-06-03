@@ -74,7 +74,7 @@ for i in range(len(x)):
 plt.plot(x, y_fit, label=fit_label, linewidth = 1.0)
 
 #ラベル
-plt.xlabel("Gamma-ray Energy [ch]}")
+plt.xlabel("Gamma-ray Energy [ch]")
 plt.ylabel("Gamma-ray Energy [keV]")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
