@@ -40,8 +40,13 @@ fit_label = (
     rf"$y = ({a:.2f} \pm {da:.2f})x + ({b:.0f} \pm {db:.0f})$"
 )
 
+#Csの点
+x1 = 178
+y1 = 661.7
+
 #点をプロット
 plt.scatter(x, y, label="data", marker='o', s=20)
+#plt.scatter(178, 661.7, marker='o', s=20, color='tab:blue')
 
 # 各点にラベル
 for i in range(len(x)):
@@ -61,6 +66,9 @@ for i in range(len(x)):
          xytext=(-30,0),
             fontsize=12
         )
+
+#Csのラベル
+#plt.annotate(r"$^{137}\mathrm{Cs}$", (178, 661.7), textcoords="offset points", xytext=(-30,0), fontsize=12)
 
 #直線
 plt.plot(x, y_fit, label=fit_label, linewidth = 1.0)
