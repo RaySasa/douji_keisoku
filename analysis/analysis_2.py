@@ -5,7 +5,7 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 #texフォントを使用
-plt.rcParams["text.usetex"] = True
+plt.rcParams["text.usetex"] = False
 
 # 線源名
 labels = [
@@ -34,8 +34,17 @@ y_ch = np.array([138, 336, 35, 308, 350, 178])#peak(ch)
 x_keV = x_ch * a_p
 y_keV = y_ch * a_p + b_p
 
+#誤差の計算
+dx = x_ch * da_p
+dy = np.sqrt(y_ch**2 * da_p**2 + db_p**2)
+
 #分解能Rを計算
 R = x_keV / y_keV
+#誤差
+dR = np.sqrt( (dx/y_keV)**2 + (dy*x_keV/y_keV**2)**2) 
+print(x_ch)
+print(R)
+print(dR)
 
 #\frac{1}{\sqrt{E}}
 Y = 1 / np.sqrt(y_keV)
@@ -128,8 +137,8 @@ ax[1].scatter(Y, R, label="data", marker='o', s=20)
 ax[1].plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
 
 #ラベル
-ax[0].set_xlabel(rf"$E\,\mathrm{{[keV]}}$")
-ax[1].set_xlabel(rf"$1/sqrt(E) [keV(-1/2)]$")
+ax[0].set_xlabel("E [keV]")
+ax[1].set_xlabel("E^(-1/2) [keV^(-1/2)]")
 
 for i in range(0,2):
     ax[i].legend()
