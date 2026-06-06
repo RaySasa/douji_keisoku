@@ -292,11 +292,15 @@ PythonでNumpyライブラリを用いて直線フィッティングした結果
 図\ref{linerfit2}のようになり、綺麗に直線に乗っている。
 また、$^{137}\mathrm{Cs}$の測定したchの値から、
 $\gamma$線のエネルギー(keV)を較正式を用いて予測する。
-較正式は、
+keV単位のエネルギーを$y$、チャンネルの値を$x$とすると較正式は、
 \begin{equation}
-    y\,[\mathrm{keV}] = (3.85 \pm 0.01)x + (-16 \pm 4)
+    y = (3.85 \pm 0.01)x -16 \pm 4
 \end{equation}
-
+である。これに$^{137}\mathrm{Cs}$のピークチャンネル値$x=178$を代入すると、
+\begin{equation}
+    y = 669.6 \pm 4.6\,\mathrm{keV}
+\end{equation}
+となる。理論値との差が誤差の2倍の範囲に収まっているので、この較正はある程度信頼できると考えられる。
 
 
 \appendix
