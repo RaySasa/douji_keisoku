@@ -23,6 +23,11 @@ db = np.sqrt(cov[1, 1])
 #フィッティング
 y_fit = a * x + b
 
+t_ch = 6.422
+t_ns = t_ch * a
+dt_ns = t_ch * da
+print(t_ns, dt_ns)
+
 #描画
 fit_label = (
     rf"$y = ({a:.3f} \pm {da:.3f})x + ({b:.1f} \pm {db:.1f})$"
