@@ -42,12 +42,10 @@ dy = np.sqrt(y_ch**2 * da_p**2 + db_p**2)
 R = x_keV / y_keV
 #誤差
 dR = np.sqrt( (dx/y_keV)**2 + (dy*x_keV/y_keV**2)**2) 
-print(x_ch)
-print(R)
-print(dR)
 
 #\frac{1}{\sqrt{E}}
 Y = 1 / np.sqrt(y_keV)
+dY = dy /(2 * y_keV**(3/2))
 
 #最小2乗法(直線)
 (p_l, cov_l) = np.polyfit(Y, R, 1, cov=True)
@@ -73,8 +71,6 @@ def f(x, a, b):
 y_cfit = np.linspace(min(y_keV), max(y_keV), 300)
 R_cfit = f(y_cfit, a_l, b_l)
 
-#描画
-fig, ax = plt.subplots(1, 2, figsize = (12,5))
 
 #曲線のラベル
 fit_label_0 = (
@@ -84,10 +80,11 @@ fit_label_1 = (
     rf"$y = ({a_l:.3f} \pm {da_l:.3f})x + ({b_l:.3f} \pm {db_l:.3f})$"
 )
 
+#曲線
 # 各点にラベル
 for i in range(len(R)):
     if i == 2:
-        ax[0].annotate(
+        plt.annotate(
             labels[i],
             (y_keV[i], R[i]),
             textcoords="offset points",
@@ -95,7 +92,7 @@ for i in range(len(R)):
             fontsize=12
         )
     else:    
-        ax[0].annotate(
+        plt.annotate(
             labels[i],
             (y_keV[i], R[i]),
             textcoords="offset points",
@@ -103,9 +100,27 @@ for i in range(len(R)):
             fontsize=12
         )
 
+#plt.errorbar(y_keV, R, xer = dy, yerr = dR, capsize=5, fmt='.', label= "with", markersize= 2)      
+#点と曲線
+plt.errorbar(y_keV, R, xerr = dy, yerr = dR, capsize=3, fmt='.', label= "data", markersize= 2)  
+plt.plot(y_cfit, R_cfit, label=fit_label_0, linewidth = 1.0)
+
+#ラベル
+plt.xlabel("E [keV]")
+plt.legend()
+plt.grid(linestyle = "--", linewidth = 0.5)
+plt.ylabel("Resolution")
+
+#画像を保存
+plt.savefig("tex/analysis_2_curve.pdf", dpi=300, bbox_inches="tight")
+plt.show()
+
+
+#直線
+
 for i in range(len(R)):
     if i == 3:
-        ax[1].annotate(
+        plt.annotate(
             labels[i],
             (Y[i], R[i]),
             textcoords="offset points",
@@ -113,7 +128,7 @@ for i in range(len(R)):
             fontsize=12
         )
     elif i == 2:
-        ax[1].annotate(
+        plt.annotate(
             labels[i],
             (Y[i], R[i]),
             textcoords="offset points",
@@ -121,30 +136,25 @@ for i in range(len(R)):
             fontsize=12
         )
     else:
-        ax[1].annotate(
+        plt.annotate(
             labels[i],
             (Y[i], R[i]),
             textcoords="offset points",
          xytext=(5,-5),
             fontsize=12
         )
-               
-#点と曲線
-ax[0].scatter(y_keV, R, label="data", marker='o', s=20)
-ax[0].plot(y_cfit, R_cfit, label=fit_label_0, linewidth = 1.0)
 
-ax[1].scatter(Y, R, label="data", marker='o', s=20)
-ax[1].plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
+#plt.errorbar(y_keV, R, yerr = dy, capsize=5, fmt='.', label= "with", markersize= 2)               
+
+plt.errorbar(Y, R, xerr = dY, yerr = dR, capsize=3, fmt='.', label= "data", markersize= 2)
+plt.plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
 
 #ラベル
-ax[0].set_xlabel("E [keV]")
-ax[1].set_xlabel("E^(-1/2) [keV^(-1/2)]")
-
-for i in range(0,2):
-    ax[i].legend()
-    ax[i].grid(linestyle = "--", linewidth = 0.5)
-    ax[i].set_ylabel("Resolution")
+plt.xlabel("E^(-1/2) [keV^(-1/2)]")
+plt.legend()
+plt.grid(linestyle = "--", linewidth = 0.5)
+plt.ylabel("Resolution")
 
 #画像を保存
-plt.savefig("tex/analysis_2.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_2_liner.pdf", dpi=300, bbox_inches="tight")
 plt.show()
