@@ -35,8 +35,8 @@ plt.scatter(x, y, label="data", marker='o', s=20)
 plt.plot(x, y_fit,label=fit_label, linewidth = 1.0)
 
 #ラベル
-plt.xlabel("ch")
-plt.ylabel("ns")
+plt.xlabel("delay time (ch)")
+plt.ylabel("delay time (ns)")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 
