@@ -143,8 +143,7 @@ for i in range(len(R)):
          xytext=(5,-5),
             fontsize=12
         )
-
-#plt.errorbar(y_keV, R, yerr = dy, capsize=5, fmt='.', label= "with", markersize= 2)               
+          
 
 plt.errorbar(Y, R, xerr = dY, yerr = dR, capsize=3, fmt='.', label= "data", markersize= 2)
 plt.plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0)
