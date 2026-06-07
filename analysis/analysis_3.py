@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #texフォントを使用
-plt.rcParams["text.usetex"] = True
+plt.rcParams["text.usetex"] = False
 
 x = np.array([25, 50, 76, 102, 128, 154, 180, 206, 232, 259])
 y = np.arange(56, 507, 50)
