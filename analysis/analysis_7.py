@@ -20,11 +20,11 @@ def load_spectrum(filename):
 
     return ch, count
 
-ch, count =  load_spectrum("22Na_spectrum.csv")
+ch, count =  load_spectrum("0-5cm.csv")
 
 plt.plot(ch, count)
 plt.xlabel("Gamma-ray Energy [ch]")
 plt.ylabel("Counts")
 plt.grid(linestyle = "--", linewidth = 0.5)
-plt.savefig("../tex/22Na_spectrum.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("../tex/0-5cm.pdf", dpi=300, bbox_inches="tight")
 plt.show()
