@@ -5,7 +5,10 @@ import numpy as np
 from scipy.optimize import curve_fit
 from scipy.special import ellipk
 
-M = 10
+#texフォントを使用
+plt.rcParams["text.usetex"] = False
+
+M = 50
 
 L = 10.41
 Rs = 1.27
@@ -21,12 +24,16 @@ xex1 = np.array([0, 10, 20, 25, 30, 45])
 yex1 = np.array([121.602, 96.827, 33.349, 8.325, 1.804, 1.11])
 
 #新しいデータ L = 5.41
-xex2 = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45, 60])
-yex2 = np.array([145.691, 128.762, 94.860, 78.117, 41.344, 15.050, 2.908, 1.127, 0.762, 0.742])
+#xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45, 60])
+#yex = np.array([145.691, 128.762, 94.860, 78.117, 41.344, 15.050, 2.908, 1.127, 0.762, 0.742])
+#count = np.array([13.112e3, 10.687e3, 5.692e3, 5.468e3, 5.044e3, 3.281e3, 424.535, 203.925, 189.640, 222.549])
+#dy = np.sqrt(count) * yex /count
 
 # L = 10.41
 xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45])
 yex = np.array([43.539, 43.004, 41.696, 37.384, 24.433, 3.345, 0.519, 0.275, 0.214])
+count = np.array([3.744e3, 6.365e3, 8.172e3, 9.122e3, 2.565e3, 428.115, 110.028, 82.495, 46.628])
+dy = np.sqrt(count) * yex / count
 
 
 # 積分用メッシュ
@@ -211,6 +218,7 @@ popt, pcov = curve_fit(
 
 A_fit, B_fit = popt
 perr = np.sqrt(np.diag(pcov))
+dA, dB = perr
 
 print("===== fitting result =====")
 print("A =", A_fit, "+/-", perr[0])
@@ -219,15 +227,22 @@ print("c =", c_fixed, "fixed")
 print("d =", d_fixed, "fixed")
 print("r =", r_fixed, "fixed")
 
-theta_plot = np.linspace(0, 75, 50)
+theta_plot = np.linspace(0, 75, 100)
 fit_y = fit_func(theta_plot, *popt)
 
-plt.scatter(xex, yex, label="experiment")
-plt.plot(theta_plot, fit_y, label="fit")
+#曲線のラベル
+fit_label = (
+    rf"cps$ = ({round(A_fit, -2):.0f} \pm {round(dA, -1):.0f})N(\theta)/n"
+    rf" + ({round(B_fit, 0):.0f} \pm {round(dB, 0):.0f})$"
+)
 
-plt.xlabel("theta [deg]")
-plt.ylabel("counts")
+plt.errorbar(xex, yex, yerr = dy, capsize=5, fmt='.', label= "data", markersize= 2)
+plt.plot(theta_plot, fit_y, label=fit_label)
+
+plt.xlabel(rf"$\theta\,[deg]$")
+plt.ylabel("cps [1/s]")
 plt.legend()
+plt.grid(linestyle = "--", linewidth = 0.5)
 
-plt.savefig("tex/analysis_ex4_fit.png", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_ex_fit_L10.pdf", dpi=300, bbox_inches="tight")
 plt.show()
