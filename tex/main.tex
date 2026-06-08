@@ -665,16 +665,22 @@ $^{137}\mathrm{Cs}$はCompton散乱の入射$\gamma$線源として、$^{22}\mat
 \end{table}
 %3.4.1
 \subsection{検出器利得の調整}
-実験1と同様に$\gamma$線のパルス信号が、MCAの表示範囲に収まるように利得を調整した。
+\label{gain-adjust}
+線源$^{137}\mathrm{Cs}$を2つの検出器の前に置き、$\gamma$線を検出した。
+増幅器を通してMCAで$\gamma$線の信号を確認し、$\gamma$線のパルス信号がMCAの表示範囲に収まるように利得を調整した。
 また、本実験では2つの検出器の信号の和をとるため、それぞれの検出器が同じエネルギーの放射線を検出したときのピークチャンネルを揃える必要がある。
 $^{137}\mathrm{Cs}$から検出したエネルギー$611.7\,\mathrm{keV}$のピークチャンネルが$300\,\mathrm{ch}$になるように利得を調整した。
 %3.4.2
 \subsection{検出器のエネルギー較正}
-線源$^{22}\mathrm{Na},\,^{57}\mathrm{Co}$の$\gamma$線を用いて、検出器のエネルギー較正を行った。
+\ref{gain-adjust}項と同じ回路において、線源$^{22}\mathrm{Na},\,^{57}\mathrm{Co}$の$\gamma$線を用いて検出器のエネルギー較正を行った。
 $^{22}\mathrm{Na}$は$511\,\mathrm{keV}$の$\gamma$線のみを較正に用いた。
 %3.4.3
 \subsection{エネルギー選別}
-2つの検出器から出るパルス信号をSum Ampを通してSCAに繋ぎ、MCAでスペクトルを確認した。
+\ref{gain-adjust}項の回路において、増幅器から出る2つの信号をSum Ampに繋げた。
+Sum Ampからの信号を分岐させて、片方はMCAのsignal入力に、もう片方はSCAを通してMCAのgate入力に接続した。
+MCAでスペクトルを確認しながら、SCAを用いて$661.7\,\mathrm{keV}$のエネルギーピークを選別した。
+%3.4.4
+\subsection{Compton散乱の角度分布}
 %3.5
 \section{実験結果}
 %3.6
