@@ -375,10 +375,10 @@ SCAを用いてエネルギー選別を行った後、図\ref{douji}の回路を
 %tab2.3
 \begin{table}[H]
     \centering
-    \begin{tabular}{c|c|c|c|c|c}
-        \multicolumn{2}{l|}{$^{22}\mathrm{Na}$} & \multicolumn{2}{l|}{$^{60}\mathrm{Co}$} & $^{57}\mathrm{Co}$ & $^{137}\mathrm{Cs}$ \\ \hline
-        $511\,\mathrm{keV}$ & $1275\,\mathrm{keV}$ & $1173\,\mathrm{keV}$ & $1333\,\mathrm{keV}$ & $122\,\mathrm{keV}$ & $661.7\,\mathrm{keV}$ \\ \hline
-        $138 \pm 14 \,\mathrm{ch}$ & $336 \pm 22\,\mathrm{ch}$ & $308 \pm 17\,\mathrm{ch}$ & $350 \pm 20\,\mathrm{ch}$ & $35 \pm 5\,\mathrm{ch}$ & $178 \pm 16\,\mathrm{ch}$
+    \begin{tabular}{c|c|c|c|c|c|c}
+        線源の種類 & \multicolumn{2}{c|}{$^{22}\mathrm{Na}$} & \multicolumn{2}{c|}{$^{60}\mathrm{Co}$} & $^{57}\mathrm{Co}$ & $^{137}\mathrm{Cs}$ \\ \hline
+        エネルギー(keV) & $511$ & $1275$ & $1173$ & $1333$ & $122$ & $661.7$ \\ \hline
+        エネルギー(ch) & $138 \pm 14$ & $336 \pm 22$ & $308 \pm 17$ & $350 \pm 20$ & $35 \pm 5$ & $178 \pm 16$
     \end{tabular}
     \caption{$\gamma$線エネルギースペクトルのピーク}
     \label{energypeak}
@@ -689,54 +689,68 @@ $611.7\,\mathrm{keV}$になるような信号のみをMCAで表示できる。
 %fig3.1
 \begin{figure}[H]
     \centering
-    \includegraphics[width=8cm]{Compton-circuit.png}
+    \includegraphics[width=12cm]{Compton-circuit.png}
     \caption{Compton散乱事象測定時の回路図}
     \label{Compton-circuit}
 \end{figure}
 %fig3.2
 \begin{figure}[H]
     \centering
-    \includegraphics[width=5cm]{Compton-Exp.png}
+    \includegraphics[width=10cm]{Compton-Exp.png}
     \caption{Compton散乱事象測定時の検出器系の配置図}
     \label{Compton-Exp}
 \end{figure}
 %3.5
 \section{実験結果}
+図\ref{Compton-circuit}において、角度$\theta$を変えて測定した散乱$\gamma$線のエネルギー分布を図\ref{Compton-spectrum}に示す。
 %fig3.3
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
 
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{compton45.pdf}
-        \caption{$\theta=45^{\circ}$のとき}
+        \caption{$\theta=45^{\circ}$}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{compton60.pdf}
-        \caption{$^{60}\mathrm{Co}$のエネルギースペクトル}
+        \caption{$\theta=60^{\circ}$}
     \end{subfigure}
-
-    \vspace{5mm}
-
-    \begin{subfigure}{0.35\textwidth}
+\end{figure}
+\begin{figure}[H]
+    \ContinuedFloat
+    \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{compton75.pdf}
-        \caption{$^{57}\mathrm{Co}$のエネルギースペクトル}
+        \caption{$\theta=75^{\circ}$}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{compton90.pdf}
-        \caption{$^{137}\mathrm{Cs}$のエネルギースペクトル}
+        \caption{$\theta=90^{\circ}$}
     \end{subfigure}
 
     \caption{Compton散乱のエネルギースペクトル}
-    \label{Copton-spectrum}
+    \label{Compton-spectrum}
 \end{figure}
 %3.6
 \section{解析と考察}
+\subsection{検出器のエネルギー較正}
+線源$\mathrm{^{137}Cs,\,^{22}Na,\,^{57}Co}$の$\gamma$線のエネルギーとMCAで検出したエネルギースペクトルのピークチェンネルを表\ref{energypeak2}に示す。
+%tab3.2
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        線源の種類 & $^{137}\mathrm{Cs}$ & $^{22}\mathrm{Na}$ & $^{57}\mathrm{Co}$ \\ \hline
+        エネルギー(keV) & 611.7 & 511 & 122 \\ \hline
+        エネルギー(ch) & 300 & 236 & 60
+    \end{tabular}
+    \caption{$\gamma$線エネルギースペクトルのピーク}
+    \label{energypeak2}
+\end{table}
 
 
 
