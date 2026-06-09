@@ -20,11 +20,11 @@ def load_spectrum(filename):
 
     return ch, count
 
-ch, count =  load_spectrum("compton90.csv")
+ch, count =  load_spectrum("compton30.csv")
 
 plt.plot(ch, count)
 plt.xlabel("Gamma-ray Energy [ch]")
 plt.ylabel("Counts")
 plt.grid(linestyle = "--", linewidth = 0.5)
-plt.savefig("../tex/compton90.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("../tex/compton30.pdf", dpi=300, bbox_inches="tight")
 plt.show()

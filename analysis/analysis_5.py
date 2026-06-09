@@ -34,10 +34,14 @@ Ec = E(x_fit)
 
 print(ych,ykeV)
 
-plt.scatter(x, ykeV, label="data", marker='o', s=20)
-plt.plot(x_fit, Ec, linewidth = 1.0)
-plt.errorbar(x, ykeV, yerr = y_err, capsize=5, fmt='o', markersize=0, ecolor='black', markeredgecolor = "black", color='w')
+#plt.scatter(x, ykeV, label="data", marker='o', s=20)
+plt.errorbar(x, ykeV, yerr = y_err, capsize=5, fmt='.', markersize=0, label= 'data')
+plt.plot(x_fit, Ec, linewidth = 1.0, label= 'theory')
+
 
 plt.legend()
+plt.xlabel(r"$\theta\,[degree]$")
+plt.ylabel("Gamma-ray Energy")
 plt.grid(linestyle = "--", linewidth = 0.5)
+plt.savefig("tex/analysis_5.pdf", dpi=300, bbox_inches="tight")
 plt.show()

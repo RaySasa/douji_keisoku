@@ -47,7 +47,7 @@ y1 = 661.7
 
 #点をプロット
 plt.scatter(x, y, label="data", marker='o', s=20)
-plt.scatter(178, 661.7, marker='o', s=20, color='tab:blue')
+plt.scatter(178, 661.7, marker='o', s=20)
 
 # 各点にラベル
 for i in range(len(x)):
