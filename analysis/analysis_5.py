@@ -32,7 +32,7 @@ def E(t):
 x_fit = np.linspace(0, 90, 300)
 Ec = E(x_fit)
 
-print(ych,ykeV)
+print(ych,ykeV,y_err)
 
 #plt.scatter(x, ykeV, label="data", marker='o', s=20)
 plt.errorbar(x, ykeV, yerr = y_err, capsize=5, fmt='.', markersize=0, label= 'data')
@@ -43,5 +43,5 @@ plt.legend()
 plt.xlabel(r"$\theta\,[degree]$")
 plt.ylabel("Gamma-ray Energy")
 plt.grid(linestyle = "--", linewidth = 0.5)
-plt.savefig("tex/analysis_5.pdf", dpi=300, bbox_inches="tight")
+#plt.savefig("tex/analysis_5.pdf", dpi=300, bbox_inches="tight")
 plt.show()
