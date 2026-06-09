@@ -7,6 +7,7 @@ from scipy.optimize import curve_fit
 #データ
 xex = np.array([30, 45, 60, 75, 90])#角度
 yex = np.array([3.01, 3.208, 2.868, 2.431, 2.072])#cps
+dy = np.sqrt(yex * 300) / 300
 
 r = np.array([0.015, 0.02, 0.03, 0.04, 0.07])
 x = 2.54
@@ -14,6 +15,7 @@ rho = 3.67
 mu = r * 3.67
 
 ycor = yex / (1 - np.exp(- mu * x))
+dycor = dy / (1 - np.exp(- mu * x))
 
 # constants [keV]
 E_gamma = 661.7
@@ -40,7 +42,7 @@ theta_rad = np.deg2rad(theta_deg)
 y = klein_nishina(theta_rad, 1)
 
 #フィット
-popt, pcov = curve_fit(klein_nishina, xex, ycor,  p0=[40],bounds=(40, np.inf))
+popt, pcov = curve_fit(klein_nishina, np.radians(xex), ycor,  p0=[50],bounds=(20, np.inf))
 #係数
 a = popt[0]
 #b = popt[1]
@@ -50,14 +52,16 @@ da = np.sqrt(pcov[0,0])
 #曲線
 y_fit = klein_nishina(theta_rad, a)
 
-print(ycor)
+print(a)
 
-plt.plot(theta_deg, y_fit)
-plt.xlabel("theta [degree]")#
-plt.ylabel("y")
-plt.grid()
+plt.errorbar(xex, ycor, yerr= dycor, capsize=3, fmt='.', label= "corrected data", markersize= 2)
+plt.plot(theta_deg, y_fit, label= 'theory')
+plt.errorbar(xex, yex, yerr= dy, capsize=3, fmt='.', label= "data", markersize= 2)
 
-#plt.scatter(xex, yex, label="data", marker='o', s=20)
-plt.scatter(xex, ycor, label="data", marker='o', s=20)
+
+plt.xlabel(r"$\theta$ [degree]")
+plt.ylabel(r"cps [$\mathrm{s}^{-1}$] $\propto d\sigma/d\Omega$")
+plt.grid(linestyle = "--", linewidth = 0.5)
+plt.legend()
 plt.savefig("tex/analysis_6.pdf", dpi=300, bbox_inches="tight")
 plt.show()
