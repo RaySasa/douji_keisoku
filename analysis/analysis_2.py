@@ -35,7 +35,7 @@ x_keV = x_ch * a_p
 y_keV = y_ch * a_p + b_p
 
 #誤差の計算
-dx = x_ch * da_p
+dx = x_ch * da_p / 2
 dy = np.sqrt(y_ch**2 * da_p**2 + db_p**2)
 
 #分解能Rを計算

@@ -19,7 +19,7 @@ ykeV = ych * a + b
 
 #エラーバー
 count = np.array([287.665, 962.366, 860.544, 729.383, 621.670])
-sigma = np.array([31.957, 62.833, 63.785, 44.105, 46.461]) * a
+sigma = np.array([31.957, 62.833, 63.785, 44.105, 46.461]) / 2 * a
 y_err = sigma / np.sqrt(count)
 
 #エネルギー分布の理論値
@@ -43,5 +43,5 @@ plt.legend()
 plt.xlabel(r"$\theta\,[degree]$")
 plt.ylabel("Gamma-ray Energy")
 plt.grid(linestyle = "--", linewidth = 0.5)
-#plt.savefig("tex/analysis_5.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_5.pdf", dpi=300, bbox_inches="tight")
 plt.show()
