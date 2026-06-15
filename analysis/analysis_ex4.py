@@ -10,7 +10,7 @@ plt.rcParams["text.usetex"] = False
 
 M = 50
 
-L = 10.41
+L = 5.41
 Rs = 1.27
 Rb = 2.54
 
@@ -19,21 +19,20 @@ c_fixed = 5.93
 d_fixed = 0.2
 r_fixed = 0.4
 
-# をんのデータ
-xex1 = np.array([0, 10, 20, 25, 30, 45])
-yex1 = np.array([121.602, 96.827, 33.349, 8.325, 1.804, 1.11])
-
 #新しいデータ L = 5.41
-#xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45, 60])
-#yex = np.array([145.691, 128.762, 94.860, 78.117, 41.344, 15.050, 2.908, 1.127, 0.762, 0.742])
-#count = np.array([13.112e3, 10.687e3, 5.692e3, 5.468e3, 5.044e3, 3.281e3, 424.535, 203.925, 189.640, 222.549])
-#dy = np.sqrt(count) * yex /count
+xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45, 60])
+yex = np.array([145.691, 128.762, 94.860, 78.117, 41.344, 15.050, 2.908, 1.127, 0.762, 0.742])
+count = np.array([13.112e3, 10.687e3, 5.692e3, 5.468e3, 5.044e3, 3.281e3, 424.535, 203.925, 189.640, 222.549])
+dx = np.full(len(xex), 0.5)
+#dx = np.full(len(xex), np.degrees(np.arctan(Rs / L)))
+dy = np.sqrt(count) * yex /count
 
 # L = 10.41
-xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45])
-yex = np.array([43.539, 43.004, 41.696, 37.384, 24.433, 3.345, 0.519, 0.275, 0.214])
-count = np.array([3.744e3, 6.365e3, 8.172e3, 9.122e3, 2.565e3, 428.115, 110.028, 82.495, 46.628])
-dy = np.sqrt(count) * yex / count
+#xex = np.array([0, 5, 10, 15, 20, 25, 30, 35, 45])
+#yex = np.array([43.539, 43.004, 41.696, 37.384, 24.433, 3.345, 0.519, 0.275, 0.214])
+#count = np.array([3.744e3, 6.365e3, 8.172e3, 9.122e3, 2.565e3, 428.115, 110.028, 82.495, 46.628])
+#dx = np.full(len(xex), 0.5)
+#dy = np.sqrt(count) * yex / count
 
 
 # 積分用メッシュ
@@ -236,13 +235,13 @@ fit_label = (
     rf" + ({round(B_fit, 0):.0f} \pm {round(dB, 0):.0f})$"
 )
 
-plt.errorbar(xex, yex, yerr = dy, capsize=5, fmt='.', label= "data", markersize= 2)
-plt.plot(theta_plot, fit_y, label=fit_label)
+plt.errorbar(xex, yex, xerr = dx, yerr = dy, capsize=5, fmt='o', label= "data", markersize= 3, color= "crimson", ecolor = "tab:blue")
+plt.plot(theta_plot, fit_y, label=fit_label, color= "darkorange")
 
 plt.xlabel(rf"$\theta\,[deg]$")
 plt.ylabel("cps [1/s]")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 
-plt.savefig("tex/analysis_ex_fit_L10.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_ex_fit_L5.pdf", dpi=300, bbox_inches="tight")
 plt.show()
