@@ -21,7 +21,8 @@ da = np.sqrt(cov[0, 0])
 db = np.sqrt(cov[1, 1])
 
 #フィッティング
-y_fit = a * x + b
+x_fit = np.array([0, 275])
+y_fit = a * x_fit + b
 
 t_ch = 6.422
 t_ns = t_ch * a
@@ -37,7 +38,7 @@ fit_label = (
 plt.scatter(x, y, label="data", marker='o', s=20)
 
 #直線
-plt.plot(x, y_fit,label=fit_label, linewidth = 1.0)
+plt.plot(x_fit, y_fit,label=fit_label, linewidth = 1.0)
 
 #ラベル
 plt.xlabel("delay time (ch)")

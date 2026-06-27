@@ -107,7 +107,7 @@ plt.errorbar(y_keV, R, xerr = dy, yerr = dR, capsize=3, fmt='.', label= "data", 
 plt.plot(y_cfit, R_cfit, label=fit_label_0, linewidth = 1.0, color='tab:blue')
 
 #ラベル
-plt.xlabel("E [keV]")
+plt.xlabel(rf"$E \, [\mathrm{{keV}}]$")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.ylabel("Resolution")
@@ -150,7 +150,7 @@ plt.errorbar(Y, R, xerr = dY, yerr = dR, capsize=3, fmt='.', label= "data", mark
 plt.plot(Y_fit, R_lfit,label=fit_label_1, linewidth = 1.0, color='tab:blue')
 
 #ラベル
-plt.xlabel("E^(-1/2) [keV^(-1/2)]")
+plt.xlabel(rf"$E^{{-1/2}} \,[\mathrm{{keV}}^{{-1/2}}]$")
 plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.ylabel("Resolution")
