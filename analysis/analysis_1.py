@@ -11,6 +11,7 @@ plt.rcParams["text.usetex"] = False
 #データ
 x = np.array([336, 138, 35, 308, 350])#チャンネル
 y = np.array([1275, 511, 122, 1173, 1333])#エネルギー
+x_fit = np.array([0, 400])
 
 # 線源名
 labels = [
@@ -34,7 +35,7 @@ da = np.sqrt(cov[0, 0])
 db = np.sqrt(cov[1, 1])
 
 #フィッティング
-y_fit = a * x + b
+y_fit = a * x_fit + b
 
 #描画
 fit_label = (
@@ -47,7 +48,7 @@ y1 = 661.7
 
 #点をプロット
 plt.scatter(x, y, label="data", marker='o', s=20)
-plt.scatter(178, 661.7, marker='o', s=20)
+#plt.scatter(x1, y1, marker='o', s=20)
 
 # 各点にラベル
 for i in range(len(x)):
@@ -69,10 +70,10 @@ for i in range(len(x)):
         )
 
 #Csのラベル
-plt.annotate(r"$^{137}\mathrm{Cs}$", (178, 661.7), textcoords="offset points", xytext=(-35,0), fontsize=12)
+#plt.annotate(r"$^{137}\mathrm{Cs}$", (178, 661.7), textcoords="offset points", xytext=(-35,0), fontsize=12)
 
 #直線
-plt.plot(x, y_fit, label=fit_label, linewidth = 1.0)
+plt.plot(x_fit, y_fit, label=fit_label, linewidth = 1.0)
 
 #ラベル
 #fp = FontProperties(family=["sans-serif"])
@@ -82,5 +83,5 @@ plt.legend()
 plt.grid(linestyle = "--", linewidth = 0.5)
 
 #画像を保存
-plt.savefig("tex/analysis_1(Cs).pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_1.pdf", dpi=300, bbox_inches="tight")
 plt.show()

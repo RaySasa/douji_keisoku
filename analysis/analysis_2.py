@@ -46,6 +46,7 @@ dR = np.sqrt( (dx/y_keV)**2 + (dy*x_keV/y_keV**2)**2)
 #\frac{1}{\sqrt{E}}
 Y = 1 / np.sqrt(y_keV)
 dY = dy /(2 * y_keV**(3/2))
+Y_fit = np.array([0.02, 0.1])
 
 #最小2乗法(直線)
 (p_l, cov_l) = np.polyfit(Y, R, 1, cov=True)
@@ -53,7 +54,7 @@ a_l = p_l[0]
 b_l = p_l[1]
 da_l = np.sqrt(cov_l[0, 0])
 db_l = np.sqrt(cov_l[1, 1])
-R_lfit = a_l * Y + b_l
+R_lfit = a_l * Y_fit + b_l
 
 #最小2乗法(曲線)
 #フィット関数
@@ -68,7 +69,7 @@ def f(x, a, b):
 #da_c = np.sqrt(pcov[0,0])
 #db_c = np.sqrt(pcov[1,1])
 #曲線
-y_cfit = np.linspace(min(y_keV), max(y_keV), 300)
+y_cfit = np.linspace(100, 1400, 300)
 R_cfit = f(y_cfit, a_l, b_l)
 
 
@@ -146,7 +147,7 @@ for i in range(len(R)):
           
 
 plt.errorbar(Y, R, xerr = dY, yerr = dR, capsize=3, fmt='.', label= "data", markersize= 2)
-plt.plot(Y, R_lfit,label=fit_label_1, linewidth = 1.0, color='tab:blue')
+plt.plot(Y_fit, R_lfit,label=fit_label_1, linewidth = 1.0, color='tab:blue')
 
 #ラベル
 plt.xlabel("E^(-1/2) [keV^(-1/2)]")
