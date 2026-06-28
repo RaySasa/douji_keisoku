@@ -53,16 +53,14 @@ da = np.sqrt(pcov[0,0])
 #曲線
 y_fit = klein_nishina(theta_rad, a)
 
-print(a)
-
 plt.errorbar(xex, ycor, xerr= dx, yerr= dycor, capsize=3, fmt='.', label= "corrected data", markersize= 2, color= "tab:red", ecolor= "tab:blue")
-plt.plot(theta_deg, y_fit, label= 'theory')
-plt.errorbar(xex, yex, yerr= dy, capsize=3, fmt='.', label= "data", markersize= 2)
+plt.plot(theta_deg, y_fit, label= 'theory', color= "tab:orange")
+plt.errorbar(xex, yex, xerr= dx, yerr= dy, capsize=3, fmt='.', label= "data", markersize= 2, color= "tab:red", ecolor= "tab:green")
 
 
 plt.xlabel(r"$\theta$ [degree]")
 plt.ylabel(r"cps [$\mathrm{s}^{-1}$] $\propto d\sigma/d\Omega$")
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.legend()
-#plt.savefig("tex/analysis_6.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_6.pdf", dpi=300, bbox_inches="tight")
 plt.show()
