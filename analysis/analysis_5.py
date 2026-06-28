@@ -21,6 +21,7 @@ ykeV = ych * a + b
 count = np.array([287.665, 962.366, 860.544, 729.383, 621.670])
 sigma = np.array([31.957, 62.833, 63.785, 44.105, 46.461]) / 2 * a
 y_err = sigma / np.sqrt(count)
+x_err = np.full(len(x), 0.5)
 
 #エネルギー分布の理論値
 e = 661.7 #入射γ線のエネルギー
@@ -35,7 +36,7 @@ Ec = E(x_fit)
 print(ych,ykeV,y_err)
 
 #plt.scatter(x, ykeV, label="data", marker='o', s=20)
-plt.errorbar(x, ykeV, yerr = y_err, capsize=5, fmt='.', markersize=0, label= 'data')
+plt.errorbar(x, ykeV, xerr = x_err, yerr = y_err, capsize=5, fmt='.', markersize=0, label= 'data')
 plt.plot(x_fit, Ec, linewidth = 1.0, label= 'theory')
 
 

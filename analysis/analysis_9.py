@@ -24,6 +24,8 @@ b = y0[0] - a * x0[0]
 
 x = np.linspace(0, 350)
 y = a * x + b
+y2 = a * x1 + b
+print(y2)
 
 #描画
 fit_label = (
@@ -51,5 +53,5 @@ plt.xlabel("Gamma-ray Energy (ch)")
 plt.ylabel("Gamma-ray Energy (keV)")
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.legend()
-plt.savefig("tex/analysis_9.pdf", dpi=300, bbox_inches="tight")
+#plt.savefig("tex/analysis_9.pdf", dpi=300, bbox_inches="tight")
 plt.show()
