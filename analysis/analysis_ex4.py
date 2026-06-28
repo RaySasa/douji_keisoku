@@ -235,7 +235,7 @@ fit_label = (
     rf" + ({round(B_fit, 0):.0f} \pm {round(dB, 0):.0f})$"
 )
 
-plt.errorbar(xex, yex, xerr = dx, yerr = dy, capsize=5, fmt='o', label= "data", markersize= 3, color= "crimson", ecolor = "tab:blue")
+plt.errorbar(xex, yex, xerr = dx, yerr = dy, capsize=5, fmt='o', label= "data", markersize= 3, color= "tab:red", ecolor = "tab:blue")
 plt.plot(theta_plot, fit_y, label=fit_label, color= "darkorange")
 
 plt.xlabel(rf"$\theta\,[deg]$")

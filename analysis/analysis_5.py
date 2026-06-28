@@ -36,7 +36,7 @@ Ec = E(x_fit)
 print(ych,ykeV,y_err)
 
 #plt.scatter(x, ykeV, label="data", marker='o', s=20)
-plt.errorbar(x, ykeV, xerr = x_err, yerr = y_err, capsize=5, fmt='.', label= "data", markersize= 3, color= "crimson", ecolor = "tab:blue")
+plt.errorbar(x, ykeV, xerr = x_err, yerr = y_err, capsize=5, fmt='.', label= "data", markersize= 3, color= "tab:red", ecolor = "tab:blue")
 plt.plot(x_fit, Ec, linewidth = 1.0, label= 'theory', color = "tab:orange")
 
 
