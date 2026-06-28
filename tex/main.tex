@@ -118,6 +118,19 @@
 
 \chapter{はじめに}
 \section{概要}
+本レポートは素粒子・原子核現象を調べる上で最も基本的な手法とされている、同時計測法を用いた2つの実験を行った結果についてまとめる。
+目に見えない素粒子・原子核の性質や現象を調べるためには、放射線検出器とその信号を処理する電子回路から成る測定系を構築する必要がある。
+同時計測法では目的に合わせて測定系を作ることで、観測したい事象がもつ特有の性質が満たされる時のみに信号を取得して測定を行う。
+本レポートでは、同時計測法を用いて以下の2つの現象の観測、測定を行った結果をまとめる。
+\begin{center}
+    \begin{varwidth}{0.9\textwidth}
+        \begin{itemize}
+            \item 電子・陽電子対消滅の観測
+            \item Compton散乱の断面積・散乱光子エネルギーの角度依存性の測定
+        \end{itemize}
+    \end{varwidth}
+\end{center}
+本章では、実験・解析を行う上で必要な前提知識について簡単に説明する。
 \section{理論}
 \subsection{$\gamma$線と物質の相互作用}
 $\gamma$線の物質との相互作用は以下の3つに分けられる。
@@ -130,32 +143,92 @@ $\gamma$線の物質との相互作用は以下の3つに分けられる。
         \end{itemize}
     \end{varwidth}
 \end{center}
-本実験では主に、光電効果とCompton散乱について扱う。
+本レポートでは、光電効果とCompton散乱に関係する現象を扱う。
 \subsection{光電効果}
-$\gamma$線が物質に当たると、物質中の自由電子を励起させ
+$\gamma$線（光子）が物質に当たると物質中の自由電子が励起させられ、電子の受け取ったエネルギーがある一定の値を超えると電子が物質の外に飛び出すことがある。
+このような現象を光電効果と言い、飛び出した電子は光電子と呼ばれる。また、ある一定のエネルギーは仕事関数と呼ばれ、物質ごとに固有の値を持つ。
+しかし光子が持つエネルギーが数百keVの場合、仕事関数の値は光子のエネルギーに対して非常に小さいので、光電子のエネルギーは光子が持っていたエネルギーに等しいと考えることができる。
 \subsection{Compton散乱}
+光子が物質中の1つの電子に散乱される現象をCompton散乱と呼ぶ。図\ref{Compton-scattering}のような状況を考える。
+ここで、$E_\gamma,\,T^{\prime}_e,\,E^{\prime}_\gamma$は入射$\gamma$線、反跳電子、反射$\gamma$線の運動エネルギーである。
+%fig1.1
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=7cm]{Compton-scattering.png}
+    \caption{Compton散乱}
+    \label{Compton-scattering}
+\end{figure}
+入射$\gamma$線、反跳電子、反射$\gamma$線の4元運動量をそれぞれ
+\begin{align}
+    p^i_{\gamma} & = \left( \frac{E_{\gamma}}{c} , \bm{p}_{\gamma} \right) \\
+    p^{\prime i}_{e} & = \left( \frac{m_e c^2 + T^{\prime}_e}{c} , \bm{p}^{\prime}_e \right) \\
+    p^{\prime i}_{\gamma} & = \left( \frac{E^{\prime}_{\gamma}}{c} , \bm{p}^{\prime}_{\gamma} \right)
+\end{align}
+とする。ただし、$m_e$は電子の質量である。質量殻条件から、
+\begin{align}
+    p_{\gamma} & = \frac{E_{\gamma}}{c} \\
+    p^{\prime}_{\gamma} & = \frac{E^{\prime}_{\gamma}}{c} \\ 
+    \bm{p}^{\prime 2}_e & = \left( \frac{m_e c^2 + T^{\prime}_e}{c} \right)^2 - m_e^2 c^2 \\ 
+    \bm{p}_{\gamma} \cdot \bm{p}^{\prime}_{\gamma} & = p_{\gamma}p^{\prime}_{\gamma} \cos\theta
+    = \frac{E_{\gamma}E^{\prime}_{\gamma}}{c^2} \cos\theta
+\end{align}
+を得る。よって、
+\begin{align}
+    \left(\frac{E^{\prime}_{\gamma}}{c}\right)^2 & = \bm{p}^{\prime 2}_{\gamma} = \left(\bm{p}_{\gamma} - \bm{p}^{\prime}_e\right)^2 \\
+    E^{\prime 2}_{\gamma} & = E^2_{\gamma} + \left( m_e c^2 + E_{\gamma} - E^{\prime}_{\gamma} \right)^2 - m_e^2 c^4 - 2 E_{\gamma}E^{\prime}_{\gamma} \cos\theta
+\end{align}
+となる。これを整理して反射$\gamma$線のエネルギー
 \begin{equation}
     E^{\prime}_{\gamma} = \frac{E_{\gamma}}{1 + \frac{E_{\gamma}}{m_e c^2}(1 - \cos\theta)}
     \label{Compton-gamma-energy}
 \end{equation}
+を得る。これより、反跳電子の運動エネルギーも
 \begin{equation}
-    T^{\prime}_{e} = \frac{E_{\gamma}}{1 + \frac{m_e c^2}{E^{\prime}_{\gamma} (1 - \cos\theta)}}
+    T^{\prime}_{e} = E_{\gamma} - E^{\prime}_{\gamma} = \frac{E_{\gamma}}{1 + \frac{m_e c^2}{E^{\prime}_{\gamma} (1 - \cos\theta)}}
     \label{Compton-electron-energy}
 \end{equation}
-\begin{equation}
-    T^{\prime}_{e:\mathrm{max}} = \frac{E_{\gamma}}{1 + m_e c^2 / (2E_{\gamma})}
-    \label{Compton-edge-formula}
-\end{equation}
-\begin{equation}
-    E^{\prime}_{\gamma:\mathrm{max}} = \frac{E_{\gamma}}{1 + 2E_{\gamma} / (m_e c^2)}
-    \label{kouhou-sanran-formula}
-\end{equation}
+このように得られる。
+また、散乱光子の角度分布は次のKlein-Nishinaの式で表されることが知られている。
 \begin{equation}
     \frac{d\sigma}{d\Omega} = r_e^2 \left[ \frac{1}{1 + \alpha (1 - \cos\theta)} \right]^2 \left[ \frac{1 + \cos^2 \theta}{2} \right]
     \left[ 1 + \frac{\alpha^2 (1 - \cos\theta)^2}{(1 + \cos^2\theta)[1 + \alpha(1 - \cos\theta)]} \right]
     \label{klein-nishina}
 \end{equation}
+ここで、$r_e$は古典電子半径、$\alpha=E_{\gamma}/m_e c^2$である。
+%1.2.4
 \subsection{シンチレーション検出器で測定される$\gamma$線のエネルギースペクトル}
+電荷を持たない$\gamma$線が物質と相互作用する手段は少なく、$\gamma$線を直接観測するのは難しい。
+そこで、前項で述べた相互作用で電子などの荷電粒子を発生させそれを観測することで、間接的に$\gamma$線を観測する。
+従って、どのような相互作用を経て観測されたかによって、同じエネルギーの$\gamma$線でも測定されるエネルギーが変化する。
+このような理由で単一の$\gamma$線をシンチレーション検出器に入射させると、単一のエネルギーピークではなく様々な成分を持つエネルギースペクトルを形成する。
+第\ref{Exp1}章 実験1では、これらのエネルギースペクトル成分のうち以下の3つの成分を測定、解析する。
+\subsubsection{光電吸収ピーク}
+入射$\gamma$線が検出器内の自由電子と相互作用して光電効果を起こすと、$\gamma$線の全エネルギー$E_{\gamma}$が吸収される。
+これによって形成されるエネルギーピークを光電吸収ピーク、または全吸収ピークと呼ぶ。
+\subsubsection{Compton散乱成分}
+入射$\gamma$線が検出器の結晶内でCompton散乱を起こすと、散乱角$\theta$に対応する様々な反跳電子のエネルギーが検出される。
+その最小値と最大値は式(\ref{Compton-electron-energy})より、
+\begin{align}
+    T^{\prime}_{e:\mathrm{min}} & = 0 \\
+    T^{\prime}_{e:\mathrm{max}} & = \frac{E_{\gamma}}{1 + m_e c^2 / (2E_{\gamma})}
+    \label{Compton-edge-formula}
+\end{align}
+であることがわかる。Compton散乱のエネルギースペクトルは$T^{\prime}_{e:\mathrm{min}}$から$T^{\prime}_{e:\mathrm{max}}$までの連続的な領域に形成される。
+この連続部分をCompton連続部と呼び、高エネルギー側の終端部分をCompton端と呼ぶ。
+\subsubsection{後方散乱ピーク}
+線源から出た$\gamma$線が検出器周辺の物体に入射し、その中でCompton散乱を起こすことがある。
+そこで発生した散乱$\gamma$線が再び検出器に入射して光電効果を起こすと、散乱$\gamma$線の全エネルギーが検出される。
+この散乱$\gamma$線のエネルギーの最小値は、式(\ref{Compton-gamma-energy})において$\theta=\pi$の時の値であり、
+\begin{equation}
+    E^{\prime}_{\gamma:\mathrm{max}} = \frac{E_{\gamma}}{1 + 2E_{\gamma} / (m_e c^2)}
+    \label{kouhou-sanran-formula}
+\end{equation}
+で与えられる。このエネルギーに対応するピークを後方散乱ピークと呼ぶ。
+\subsection{検出器の検出率補正}
+シンチレーション検出器に入射した$\gamma$線
+
+
+
 \begin{equation}
     I = I_0 e^{-\mu x}
 \end{equation}
