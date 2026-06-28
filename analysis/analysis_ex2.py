@@ -6,18 +6,18 @@ from scipy.optimize import curve_fit
 from scipy.special import *
 
 #texフォントを使用
-plt.rcParams["text.usetex"] = True
+plt.rcParams["text.usetex"] = False
 
 M = 100
-the = np.linspace(0, 90, M)
+the = np.linspace(0, 80, M)
 thr = np.radians(the)
 
-L = 10.5
-Rs = 1.27
-Rb = 2.54
-c = 5.5
-d = 0.2
-r = 0.4
+L = 10
+Rs = 1.27 #固定
+Rb = 2.54 #固定
+c = 5
+d = 0.2 #固定
+r = 0.4 #固定
 
 x_arr = np.linspace(-d/2, d/2, M)
 rho_arr = np.linspace(0, r, M)
@@ -117,5 +117,5 @@ plt.plot(the, result/ result[0])
 #ax.spines['right'].set_visible(True)
 #ax.spines['bottom'].set_visible(True)
 #ax.spines['left'].set_visible(True)
-plt.savefig("tex/analysis_ex2_final.pdf", dpi=300, bbox_inches="tight")
+plt.savefig("tex/analysis_ex_final.pdf", dpi=300, bbox_inches="tight")
 plt.show()
