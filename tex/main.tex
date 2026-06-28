@@ -93,7 +93,7 @@
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{appendix}
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 
 
 % =========================
@@ -225,22 +225,31 @@ $\gamma$線（光子）が物質に当たると物質中の自由電子が励起
 \end{equation}
 で与えられる。このエネルギーに対応するピークを後方散乱ピークと呼ぶ。
 \subsection{検出器の検出率補正}
-シンチレーション検出器に入射した$\gamma$線
-
-
-
+シンチレーション検出器に入射した$\gamma$線の全てが検出器と相互作用を起こすわけではない。
+従って、実際の検出数から入射した$\gamma$線数を知るには、検出率を考慮した補正をかける必要がある。
+検出器に入射した$\gamma$線の数を$I_0$、そのうち検出器を通過してしまう$\gamma$線の数を$I$とする。
+$I_0$と$I$の間には次のような関係が成り立つことが知られている。
 \begin{equation}
     I = I_0 e^{-\mu x}
 \end{equation}
+ここで、$x$は検出器の厚さ、$\mu$はシンチレーターの物質に対応した線減衰係数と呼ばれる物理量で、入射$\gamma$線のエネルギーに依存する。
+従って、検出器内で反応する$\gamma$線の数、つまり測定される$\gamma$線の数$N$は、次のように得られる。
 \begin{equation}
     N = I_0 - I = I_0 (1 - e^{-\mu x})
     \label{N-hosei-mu}
 \end{equation}
+本実験で使用するシンチレーター$\mathrm{NaI}$に対応する線減衰係数を$\mathrm{NaI}$の密度($\rho = 3.67\,\mathrm{g/cm^3}$)で割った
+質量減衰係数$\mu/\rho$が参考文献\cite{kyoukasho}から得られる。
+全減衰に対する線減衰係数$\mu$はそれぞれの相互作用成分に分解でき、光電効果、Compton散乱、電子対生成に対応する線吸収係数をそれぞれ$\tau,\sigma,\kappa$とすると、
+\begin{equation}
+    \mu = \tau + \sigma + \kappa
+\end{equation}
+となる。本実験では光電効果のエネルギー吸収によるピークに対して補正を行うので、補正式は
 \begin{equation}
     N = I_0 (1 - e^{-\tau x})
     \label{N-hosei-tau}
 \end{equation}
-
+のようになる。
 
 
 %2
