@@ -20,6 +20,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{wrapfig}
+\usepackage{caption}
 
 % =========================
 % TikZ
@@ -68,6 +69,23 @@
 \usepackage{jvlisting}
 \usepackage{xcolor}
 \usepackage{minted}
+
+\definecolor{codebg}{RGB}{246,249,251}
+\definecolor{coderule}{RGB}{176,190,205}
+\usemintedstyle{pastie}
+\setminted{
+  linenos,
+  breaklines,
+  breakanywhere,
+  fontsize=\scriptsize,
+  frame=single,
+  framesep=2mm,
+  baselinestretch=1.0,
+  bgcolor=codebg,
+  rulecolor=coderule,
+  tabsize=2,
+  numbersep=6pt,
+}
 
 % =========================
 % その他
@@ -1649,19 +1667,15 @@ $L$と$c$が共に大きい測定系では、検出率は$\theta$が$0$から動
     \label{graph_L=c}
 \end{figure}
 以上の2つの極限で、定性的な議論と理論による結論が一致することが、この理論の一定の妥当性を担保する。
-\clearpage
 %B.8
-\section{数値計算のコード}
+\section{数値計算のソースコード}
 以下に本章で数値計算を実行する際に使用したコードの一例をあげる。全てのソースコードは\cite{github}のリンクから参照できる。
-%
-\begin{listing}[htbp]
-\inputminted[linenos, breaklines, frame=lines, fontsize=\small, bgcolor=gray!8]{python}{analysis_ex_theory_forinput.py}
-\caption{Pythonプログラム}
-\end{listing}
+%ソースコード
+\inputminted{python}{analysis_ex_theory_forinput.py}
 
 \begin{thebibliography}{99}
-\bibitem{kyoukasho} 杉山清寛・福田光順・山中千博・下田正、(2025)、『[第6版]物理学実験』、大阪大学出版会
-\bibitem{github}
+\bibitem{kyoukasho} 杉山清寛・福田光順・山中千博・下田正, (2025), 『[第6版]物理学実験』, 大阪大学出版会
+\bibitem{github} RaySasa, douji keisoku, github.com, \url{https://github.com/RaySasa/douji_keisoku}, 参照日：2026年6月30日
 \end{thebibliography}
 
 \end{document}

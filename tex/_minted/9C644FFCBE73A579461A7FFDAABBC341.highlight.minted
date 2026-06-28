@@ -1,0 +1,112 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{}同時測定の角度分布}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{matplotlib.pyplot}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{plt}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{scipy.special}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{o}{*}
+
+\PYG{c+c1}{\PYGZsh{}変数の設定}
+\PYG{n}{M} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{the} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{80}\PYG{p}{,} \PYG{n}{M}\PYG{p}{)}
+\PYG{n}{thr} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{radians}\PYG{p}{(}\PYG{n}{the}\PYG{p}{)}
+
+\PYG{n}{L} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{c} \PYG{o}{=} \PYG{l+m+mi}{10000}
+
+\PYG{c+c1}{\PYGZsh{}固定パラメータ}
+\PYG{n}{Rs} \PYG{o}{=} \PYG{l+m+mf}{1.27}
+\PYG{n}{Rb} \PYG{o}{=} \PYG{l+m+mf}{2.54}
+\PYG{n}{d} \PYG{o}{=} \PYG{l+m+mf}{0.2}
+\PYG{n}{r} \PYG{o}{=} \PYG{l+m+mf}{0.4}
+
+\PYG{c+c1}{\PYGZsh{}積分変数の設定}
+\PYG{n}{x\PYGZus{}arr} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{d}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{d}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{M}\PYG{p}{)}
+\PYG{n}{rho\PYGZus{}arr} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{M}\PYG{p}{)}
+\PYG{n}{phi\PYGZus{}arr} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{p}{,} \PYG{n}{M}\PYG{p}{)}
+\PYG{n}{x}\PYG{p}{,} \PYG{n}{rho}\PYG{p}{,} \PYG{n}{phi} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{meshgrid}\PYG{p}{(}\PYG{n}{x\PYGZus{}arr}\PYG{p}{,} \PYG{n}{rho\PYGZus{}arr}\PYG{p}{,} \PYG{n}{phi\PYGZus{}arr}\PYG{p}{,} \PYG{n}{indexing}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}ij\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{}立体角の定義}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{Omega}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{R}\PYG{p}{):}
+    \PYG{n}{eta2} \PYG{o}{=} \PYG{l+m+mi}{4} \PYG{o}{*} \PYG{n}{R} \PYG{o}{*} \PYG{n}{h}\PYG{o}{/}\PYG{p}{((}\PYG{n}{h} \PYG{o}{+} \PYG{n}{R}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{l}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{k}{return} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{l} \PYG{o}{/} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{h}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{l}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{4} \PYG{o}{*} \PYG{n}{l} \PYG{o}{*} \PYG{n}{ellipk}\PYG{p}{(}\PYG{n}{eta2}\PYG{p}{)} \PYG{o}{/} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(} \PYG{p}{(}\PYG{n}{h} \PYG{o}{+} \PYG{n}{R}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{l}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{}arcsinの計算の安定化}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{safe\PYGZus{}arcsin}\PYG{p}{(}\PYG{n}{u}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{arcsin}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{clip}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{}原始関数}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{Fc}\PYG{p}{(}\PYG{n}{x}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n}{x}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{Rb}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{x}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{))} \PYG{o}{+} \PYG{n}{Rb}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{safe\PYGZus{}arcsin}\PYG{p}{(}\PYG{n}{x} \PYG{o}{/} \PYG{n}{Rb}\PYG{p}{)}
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{Fe}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{xT}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{):}
+    \PYG{k}{return} \PYG{n}{b} \PYG{o}{/} \PYG{n}{a} \PYG{o}{*} \PYG{p}{(} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{xT}\PYG{p}{)} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{a}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{xT}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{))} \PYG{o}{+} \PYG{n}{a}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{safe\PYGZus{}arcsin}\PYG{p}{((}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{xT}\PYG{p}{)} \PYG{o}{/} \PYG{n}{a}\PYG{p}{)} \PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} 結果保存}
+\PYG{n}{result} \PYG{o}{=} \PYG{p}{[]}
+
+\PYG{c+c1}{\PYGZsh{}それぞれのthetaに対して計算}
+\PYG{k}{for} \PYG{n}{th} \PYG{o+ow}{in} \PYG{n}{thr}\PYG{p}{:}
+
+    \PYG{c+c1}{\PYGZsh{} 色々定義}
+    \PYG{n}{l} \PYG{o}{=} \PYG{n}{L} \PYG{o}{+} \PYG{n}{x} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)} \PYG{o}{+} \PYG{n}{rho} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}
+    \PYG{n}{h} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{x} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{rho} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{th}\PYG{p}{))}
+    \PYG{n}{Om} \PYG{o}{=} \PYG{n}{Omega}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{Rs}\PYG{p}{)}
+
+    \PYG{n}{xhp} \PYG{o}{=} \PYG{n}{x} \PYG{o}{+} \PYG{n}{L}\PYG{o}{*}\PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)}
+    \PYG{n}{yhp} \PYG{o}{=} \PYG{n}{rho} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)} \PYG{o}{+} \PYG{n}{L} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)}
+    \PYG{n}{zhp} \PYG{o}{=} \PYG{n}{rho} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{phi}\PYG{p}{)}
+    \PYG{n}{yT} \PYG{o}{=} \PYG{n}{yhp} \PYG{o}{*} \PYG{p}{(}\PYG{n}{c} \PYG{o}{+} \PYG{n}{L} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{th}\PYG{p}{))}\PYG{o}{/}\PYG{n}{xhp} \PYG{o}{\PYGZhy{}} \PYG{n}{L} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{th}\PYG{p}{)}
+    \PYG{n}{zT} \PYG{o}{=} \PYG{n}{zhp} \PYG{o}{*} \PYG{p}{(}\PYG{n}{c} \PYG{o}{+} \PYG{n}{L} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{th}\PYG{p}{))}\PYG{o}{/}\PYG{n}{xhp}
+    \PYG{n}{xT} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{yT}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{zT}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+    \PYG{n}{cpsi} \PYG{o}{=} \PYG{n}{xhp} \PYG{o}{/} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{xhp}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{yhp}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{zhp}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{n}{b} \PYG{o}{=} \PYG{p}{(}\PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{n}{x}\PYG{p}{)} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{xhp}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{yhp}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{zhp}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{/}\PYG{n}{xhp} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{Om} \PYG{o}{/} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{p}{)}
+    \PYG{n}{a} \PYG{o}{=} \PYG{n}{b} \PYG{o}{/} \PYG{n}{cpsi} 
+
+    \PYG{n}{D} \PYG{o}{=} \PYG{p}{(}\PYG{n}{b} \PYG{o}{*} \PYG{n}{xT}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{n}{b}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{*} \PYG{p}{(}\PYG{n}{Rb}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{n}{den} \PYG{o}{=} \PYG{n}{b}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{o}{**}\PYG{l+m+mi}{2}
+
+    \PYG{n}{mask} \PYG{o}{=} \PYG{p}{(}\PYG{n}{D} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{den}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{1e\PYGZhy{}12}\PYG{p}{)}
+    
+
+    \PYG{n}{x0} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{full\PYGZus{}like}\PYG{p}{(}\PYG{n}{D}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{nan}\PYG{p}{)}
+
+    \PYG{n}{x0}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{b}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]}\PYG{o}{**}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{xT}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{D}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]))} \PYG{o}{/} \PYG{n}{den}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]}
+
+
+    \PYG{c+c1}{\PYGZsh{}被積分関数}
+    \PYG{n}{n} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros\PYGZus{}like}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    
+    \PYG{c+c1}{\PYGZsh{}場合わけ}
+    \PYG{n}{mask1} \PYG{o}{=} \PYG{n}{xT} \PYG{o}{\PYGZgt{}=} \PYG{n}{Rb} \PYG{o}{+} \PYG{n}{a}
+    \PYG{n}{mask2} \PYG{o}{=} \PYG{n}{xT} \PYG{o}{\PYGZlt{}=} \PYG{n}{Rb} \PYG{o}{\PYGZhy{}} \PYG{n}{a}
+    \PYG{n}{mask3} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{mask1}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{mask2}\PYG{p}{)}
+
+    \PYG{n}{n}\PYG{p}{[}\PYG{n}{mask1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+    \PYG{n}{n}\PYG{p}{[}\PYG{n}{mask2}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Om}\PYG{p}{[}\PYG{n}{mask2}\PYG{p}{]}
+    \PYG{n}{n}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Fc}\PYG{p}{(}\PYG{n}{Rb}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{Fc}\PYG{p}{(}\PYG{n}{x0}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{])} \PYG{o}{+} \PYG{n}{Fe}\PYG{p}{(}\PYG{n}{x0}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{xT}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{a}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{b}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{])} \PYG{o}{\PYGZhy{}} \PYG{n}{Fe}\PYG{p}{(}\PYG{n}{xT}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{xT}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{a}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{],} \PYG{n}{b}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]))} \PYG{o}{*} \PYG{n}{cpsi}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]} \PYG{o}{*} \PYG{n}{Om}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]} \PYG{o}{/} \PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{b}\PYG{p}{[}\PYG{n}{mask3}\PYG{p}{]}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)} 
+
+
+    \PYG{c+c1}{\PYGZsh{} 円柱座標の体積要素}
+    \PYG{n}{integrand} \PYG{o}{=} \PYG{n}{n} \PYG{o}{*} \PYG{n}{rho}
+
+    \PYG{c+c1}{\PYGZsh{} phi積分}
+    \PYG{n}{I\PYGZus{}phi} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{trapezoid}\PYG{p}{(}\PYG{n}{integrand}\PYG{p}{,} \PYG{n}{phi\PYGZus{}arr}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} rho積分}
+    \PYG{n}{I\PYGZus{}rho} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{trapezoid}\PYG{p}{(}\PYG{n}{I\PYGZus{}phi}\PYG{p}{,} \PYG{n}{rho\PYGZus{}arr}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} x積分}
+    \PYG{n}{I} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{trapezoid}\PYG{p}{(}\PYG{n}{I\PYGZus{}rho}\PYG{p}{,} \PYG{n}{x\PYGZus{}arr}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+    \PYG{n}{result}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{I}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{}検出数N}
+\PYG{n}{N} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{result}\PYG{p}{)}
+
+
+\PYG{c+c1}{\PYGZsh{}グラフを表示}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{n}{linestyle} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{linewidth} \PYG{o}{=} \PYG{l+m+mf}{0.5}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{the}\PYG{p}{,} \PYG{n}{N}\PYG{o}{/} \PYG{n}{N}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\end{MintedVerbatim}
