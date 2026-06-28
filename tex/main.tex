@@ -45,6 +45,7 @@
 \usepackage{diagbox}
 \newcommand{\slashcell}{\diagbox[width=3.5em,height=2em]{}{}}
 
+
 % =========================
 % レイアウト
 % =========================
@@ -65,6 +66,8 @@
 % =========================
 \usepackage{listings}
 \usepackage{jvlisting}
+\usepackage{xcolor}
+\usepackage{minted}
 
 % =========================
 % その他
@@ -1650,6 +1653,11 @@ $L$と$c$が共に大きい測定系では、検出率は$\theta$が$0$から動
 %B.8
 \section{数値計算のコード}
 以下に本章で数値計算を実行する際に使用したコードの一例をあげる。全てのソースコードは\cite{github}のリンクから参照できる。
+%
+\begin{listing}[htbp]
+\inputminted[linenos, breaklines, frame=lines, fontsize=\small, bgcolor=gray!8]{python}{analysis_ex_theory_forinput.py}
+\caption{Pythonプログラム}
+\end{listing}
 
 \begin{thebibliography}{99}
 \bibitem{kyoukasho} 杉山清寛・福田光順・山中千博・下田正、(2025)、『[第6版]物理学実験』、大阪大学出版会
