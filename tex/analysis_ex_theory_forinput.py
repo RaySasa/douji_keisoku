@@ -9,14 +9,14 @@ M = 100
 the = np.linspace(0, 80, M)
 thr = np.radians(the)
 
-L = 10000
-c = 10000
+L = 10
+c = 5
 
 #固定パラメータ
 Rs = 1.27
 Rb = 2.54
-d = 0.2
-r = 0.4
+d = 0.01
+r = 0.02
 
 #積分変数の設定
 x_arr = np.linspace(-d/2, d/2, M)

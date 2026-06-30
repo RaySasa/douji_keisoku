@@ -13,7 +13,7 @@ def Om(l,Rs):
 th = np.linspace(0,  80, 100000)
 thr = np.radians(th)
 
-l = 10
+l = 10000
 Rs = 1.27
 Rb = 2.54
 c = 5
@@ -55,5 +55,5 @@ plt.xlabel(rf"$\theta\,[degree]$")
 plt.ylabel(rf"$P_0$")
 plt.grid(linestyle = "--", linewidth = 0.5)
 plt.legend()
-plt.savefig("tex/analysis_ex.pdf", dpi=300, bbox_inches="tight")
+#plt.savefig("tex/analysis_ex.pdf", dpi=300, bbox_inches="tight")
 plt.show()
